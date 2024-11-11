@@ -5,7 +5,7 @@
     const Question = require('../models/Question');
     const Result = require('../models/Result');
     const Student = require('../models/Student');
-    const StudentProgress = require('../models/StudentProgress');
+    
 
     // Create a new quiz
     // Create a new quiz
