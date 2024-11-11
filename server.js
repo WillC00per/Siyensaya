@@ -12,7 +12,7 @@
 
   require('dotenv').config(); // For environment variables
 
-  const User = require('./models/user');
+  const User = require('./models/User');
  
   const Student = require('./models/Student');
   const quizRoutes = require('./routes/quizRoutes');
