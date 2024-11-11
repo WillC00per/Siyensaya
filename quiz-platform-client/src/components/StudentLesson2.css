@@ -1,0 +1,146 @@
+.student-lessons-container {
+    display: flex;
+    flex-direction: column;  /* Stack content vertically */
+    justify-content: flex-start;  /* Align content to the top */
+    align-items: center;  /* Center content horizontally */
+    padding-left: 300px;
+    background-image: url("https://i.imgur.com/BbASALP.gif");
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    min-height: 100vh;  /* Ensure it covers the full height */
+}
+
+.main-content {
+    flex: 1;
+    
+    background-color: rgba(196, 68, 225, 0.8);  /* Light overlay for readability */
+    border-radius: 10px;
+    width: 100%;  /* Ensure content stretches to the full width */
+    max-width: 1200px;  /* Optional: limit the max width of the main content */
+    margin-top: 50px;  /* Adjust to move content down if needed */
+}
+
+.lessons-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.lesson-card {
+    background-color: #f8f9fa;
+    width: 300px;
+    height: 250px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lesson-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.lesson-card-content {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+.lesson-card h3 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.lesson-card p {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.view-lesson-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.view-lesson-btn:hover {
+    background-color: #0056b3;
+}
+
+.student-lessons-container .main-content .lessons-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.lesson-card {
+    background-color: #f8f9fa;
+    width: 300px;
+    height: 250px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lesson-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.lesson-card-content {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+.lesson-card h3 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.lesson-card p {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.view-lesson-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.view-lesson-btn:hover {
+    background-color: #0056b3;
+}

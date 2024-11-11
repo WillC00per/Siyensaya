@@ -1,0 +1,100 @@
+/* Base navbar styles */
+/* Base navbar styles */
+.student-navbar {
+    border-bottom-left-radius: 30px;
+    box-shadow: 0 6px 6px -6px #222;
+    background-color: rgba(128, 0, 128, 0.7) !important; /* Purple background */
+    padding: 10px 5%; /* Adjusted padding for responsiveness */
+    margin-left: 200px;
+    display: flex; /* Flex container for alignment */
+    align-items: center;
+    justify-content: space-between; /* Adjust items with space between them */
+    position: relative; /* Needed for absolute positioning of the button */
+}
+
+/* Add this new class to center the toggle button */
+.toggle-button-container {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center the button horizontally */
+    width: 100%; /* Take full width */
+}
+
+/* Specific styling for the toggle button */
+.navbar-toggle-button {
+    width: 10%; /* Set the width of the button */
+    margin-left: 10px;
+    font-weight: bold; /* Ensure button text is bold */
+    background-color: #ffc10740; /* Custom background color for toggle button */
+    border: none; /* Remove border */
+    border-radius: 30px; /* Rounded corners for toggle button */
+    transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+.navbar-toggle-button:hover {
+    background-color: #e0a800; /* Darker yellow on hover */
+}
+
+
+/* Flex container for form and branding */
+.student-navbar .form-inline {
+    flex-grow: 1; /* Allow to grow */
+    display: flex;
+    justify-content: flex-end; /* Align form elements to the right */
+    margin-right: 10px; /* Reduced margin for tighter layout */
+}
+
+.student-navbar .form-inline .form-control {
+    width: 200px; /* Adjusted width for responsiveness */
+    margin-right: 10px; /* Space between input and button */
+    border-radius: 30px; /* Rounded input */
+}
+
+/* Specific styling for the search button */
+.search-button {
+    border-radius: 30px; /* Rounded button */
+    background-color: #d33434; /* Custom background color */
+    font-weight: 400;
+    transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+.search-button:hover {
+    background-color: #6b0f6b; /* Darker purple on hover */
+}
+
+.student-navbar .navbar-text {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Align text to the right */
+}
+
+.student-navbar .navbar-brand img {
+    height: 50px; /* Consistent logo height */
+    width: auto; /* Maintain aspect ratio */
+}
+
+.student-navbar .navbar-text img {
+    margin-right: 10px; /* Space around profile image */
+    border-radius: 50%; /* Circular profile image */
+}
+
+/* Shrunk navbar styles */
+.navbar-shrunk {
+    display: flex; /* Flex container */
+    align-items: center; /* Center items vertically */
+    height: 0px; /* Reduced height */
+}
+
+/* Media query for mobile view (both portrait and landscape) */
+@media (max-width: 768px) {
+    .student-navbar {
+        display: none; /* Hide the navbar entirely in mobile view */
+    }
+}
+
+/* Further adjustments for even smaller screens */
+@media (max-width: 480px) {
+    .student-navbar .navbar-brand img {
+        height: 35px; /* Further reduce logo size */
+    }
+}
+

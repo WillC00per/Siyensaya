@@ -1,0 +1,252 @@
+/* AdminDashboard.css */
+
+.container-fluid {
+    padding-left: 400px;
+    padding-top: 110px;
+    background-color: #f8f9fa;
+}
+
+.dashboard-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.dashboard-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.chart-container {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column; /* Stack title and chart vertically */
+    align-items: center; /* Center align the chart */
+}
+
+.grade-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Modified layout for student cards: single row */
+.admin-dashboard-component__students {
+    display: flex; /* Use flex to create a horizontal layout */
+    flex-wrap: nowrap; /* Prevent wrapping to keep students in a single line */
+    overflow-x: auto; /* Allow horizontal scrolling if there are too many cards */
+    gap: 1rem; /* Space between cards */
+}
+
+/* Card styles for student profiles */
+.admin-dashboard-component__student-card {
+    width: 80px; /* Fixed width for student cards */
+    height: 100px; /* Fixed height for student cards */
+    display: flex; /* Allow flex to center contents */
+    flex-direction: column; /* Stack image and name vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    cursor: pointer; /* Indicate that the card is clickable */
+    transition: all 0.3s ease; /* Add transition for hover effect */
+}
+
+.admin-dashboard-component__student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Add hover effect */
+}
+
+.card-body .admin-dashboard-component__student-name {
+    font-size: 10px; /* Adjust size for smaller cards */
+    font-weight: 100; 
+    color: #000;
+    margin-top: 5px; 
+}
+
+.card-title {
+    font-size: 8px; /* Smaller font size for card title */
+    font-weight: 500;
+}
+
+.card-img-top {
+    width: 30px; /* Adjust avatar size */
+    height: 30px; /* Adjust avatar size */
+    border: 2px solid #dee2e6;
+    padding: 5px;
+    z-index: 1000;
+    border-radius: 100%;
+}
+
+/* Button styling */
+.btn-primary, .btn-info {
+    border-radius: 30px;
+    padding: 10px 20px;
+}
+
+.btn-primary {
+    background-color: #4da999;
+    border-color: #4da999;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-primary:hover, .btn-info:hover {
+    background-color: #37a087;
+    border-color: #37a087;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .container-fluid {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .dashboard-section {
+        padding: 15px;
+    }
+
+    .dashboard-title {
+        font-size: 20px;
+    }
+
+    .grade-title {
+        font-size: 18px;
+    }
+
+    .card-title {
+        font-size: 12px;
+    }
+
+    .btn-primary, .btn-info {
+        padding: 8px 15px;
+    }
+
+    /* Adjust layout for smaller screens: maintain single row */
+    .admin-dashboard-component__students {
+        flex-direction: row; /* Ensure horizontal layout */
+        overflow-x: auto; /* Allow scrolling if there are many cards */
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-title {
+        font-size: 18px;
+    }
+
+    .grade-title {
+        font-size: 16px;
+    }
+
+    .card-title {
+        font-size: 10px;
+    }
+}
+
+/* Box styling for layout */
+.dashboard-box {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    flex: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Layout styles for sections */
+.admin-dashboard-component__section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.admin-dashboard-component__chart-container {
+    flex: 2;
+    margin-right: 20px;
+}
+
+.students-container {
+    flex: 1;
+    margin-right: 20px;
+}
+
+/* Teachers list styling */
+.teachers-list {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: auto;
+}
+
+.teachers-list h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.list-group-item {
+    padding: 10px 15px;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.list-group-item:hover {
+    background-color: #f1f1f1;
+}
+/* Container for the dashboard badges section */
+.dashboard-badges-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+/* Title styling */
+.dashboard-badges-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* List styling */
+.dashboard-badges-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Individual list item styling */
+.dashboard-badges-list-item {
+    background-color: #ffffff;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect for list items */
+.dashboard-badges-list-item:hover {
+    background-color: #f1f1f1;
+}
+
+/* Grade label styling */
+.dashboard-badges-grade-label {
+    font-weight: bold;
+}
+
+/* Badge information styling */
+.dashboard-badges-info {
+    margin-left: 10px;
+    color: #555;
+}

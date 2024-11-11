@@ -1,0 +1,118 @@
+.student-sidebar {
+    width: 250px;
+    background: rgba(49, 27, 146, 0.8); /* Semi-transparent dark purple */
+    background: linear-gradient(135deg, rgba(106, 27, 154, 0.8), rgba(32, 32, 32, 0.8)); /* Purple and black gradient */
+    color: #fff;
+    padding-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 99;
+    
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    overflow-y: auto;
+    transition: width 0.3s ease; /* Smooth transition for collapse */
+}
+
+.student-sidebar.collapsed {
+    width: 60px; /* Adjust width for collapsed state */
+}
+
+.toggle-btn {
+    position: absolute;
+    left: calc(100% - 40px); /* Adjust position */
+    top: 50%; /* Center it vertically */
+    transform: translateY(-50%); /* Adjust for perfect centering */
+    background-color: rgba(248, 196, 69, 0.8); /* Bright yellow background color */
+    border: none;
+    border-radius: 50%;
+    width: 40px; /* Button size */
+    height: 40px; /* Button size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Hover effect */
+    z-index: 100; /* Ensure the button stays above other elements */
+}
+
+.toggle-btn:hover {
+    background-color: rgba(255, 193, 7, 0.8); /* Change on hover */
+}
+
+.student-sidebar .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.student-sidebar .logo img {
+    max-width: 60%;
+    height: auto;
+}
+
+.student-sidebar ul {
+    list-style: none;
+    margin-top: 20px;
+    padding: 0; /* Remove default padding */
+}
+
+.student-sidebar .nav-link {
+    font-size: 1.2em; /* Slightly larger for better readability */
+    font-weight: bold; /* Make text bold for emphasis */
+    margin-left: 10px;
+    margin-top: 15px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: #ffe600; /* Bright yellow for link text */
+    display: flex;
+    align-items: center; /* Align icons and text */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+    position: relative; /* For pseudo-element positioning */
+}
+
+.student-sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Change background color on hover */
+    color: #fff; /* Keep text color white on hover */
+}
+
+/* Separator Line Between Links */
+.student-sidebar .nav-link:not(:last-child)::after {
+    content: "";
+    display: block;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.3); /* Light separator line */
+    margin: 10px 0; /* Space out from the links */
+    width: 100%; /* Full width */
+}
+
+.nav-icon {
+    margin-right: 10px; /* Space between icon and text */
+    font-size: 1.5em; /* Larger icon size for visibility */
+}
+
+/* Media Queries */
+@media (max-width: 768px) { /* For tablets and smaller devices */
+    .student-sidebar {
+        width: 60px; /* Ensure the sidebar is collapsed */
+    }
+
+    .student-sidebar.collapsed {
+        width: 60px; /* Keep collapsed width */
+    }
+
+    .student-sidebar .nav-link {
+        justify-content: center; /* Center items when collapsed */
+        font-size: 0.8em; /* Smaller font size for better fit */
+    }
+}
+
+@media (min-width: 769px) {
+    .student-sidebar {
+        width: 250px; /* Default width for larger screens */
+    }
+}

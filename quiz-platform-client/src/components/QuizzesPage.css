@@ -1,0 +1,107 @@
+/* QuizzesPage.css */
+
+.quizzes-page {
+    background-image: url("https://i.imgur.com/BbASALP.gif"); 
+    background-size: cover;           /* Cover the entire card */
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.qp-main-content {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    color: #ffffff; /* White text for the title */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun font for a gamified look */
+}
+
+/* Quiz container styling */
+.quiz-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 250px; /* Default margin-left */
+    justify-content: center; /* Center align the quiz cards */
+    gap: 20px; /* Add gap between quiz cards */
+}
+
+/* Quiz card styling */
+.quiz-card {
+    background: #282828; /* Dark background for quiz cards */
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+    color: #ffffff; /* White text color */
+    width: 300px; /* Fixed width for uniformity */
+    padding: 15px; /* Add padding for content */
+}
+
+/* Hover effects for quiz cards */
+.quiz-card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6); /* Shadow effect on hover */
+}
+
+/* Card title styling */
+.card-title {
+    font-size: 1.5rem; /* Increased font size for titles */
+    color: #ffcc00; /* Gold color for titles */
+}
+
+/* Button styling */
+.btn-primary {
+    background-color: #ffcc00; /* Gold color for buttons */
+    border: none;
+    transition: background-color 0.3s; /* Transition for button hover */
+}
+
+.btn-primary:hover {
+    background-color: #e6b800; /* Darker gold on hover */
+}
+
+.btn-primary svg {
+    margin-right: 5px; /* Add space between icon and text */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    /* For smaller devices (mobile) */
+    .quiz-container {
+        margin-left: 0; /* Set margin-left to 70px for portrait view */
+        justify-content: space-around; /* Space out quiz cards more evenly */
+        padding: 10px; /* Reduce padding for smaller screens */
+    }
+
+    .quiz-card {
+        width: 90%; /* Make quiz cards responsive */
+        max-width: 300px; /* Max width for larger screens */
+        padding: 10px; /* Adjust padding inside cards */
+    }
+
+    h1 {
+        font-size: 1.8rem; /* Slightly smaller title font for mobile */
+    }
+}
+
+@media (orientation: landscape) and (max-width: 768px) {
+    /* Additional styling for landscape mode on smaller devices */
+    .quiz-container {
+        padding: 20px; /* Add padding around the container */
+        margin-left: 0; /* Remove margin-left for landscape */
+    }
+
+    .quiz-card {
+        width: 45%; /* Make cards wider for landscape */
+        max-width: 350px; /* Max width for landscape */
+        padding: 15px; /* Padding inside cards */
+    }
+
+    h1 {
+        font-size: 2rem; /* Slightly larger title font for visibility in landscape */
+    }
+}

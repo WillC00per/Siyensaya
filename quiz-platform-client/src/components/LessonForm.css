@@ -1,0 +1,51 @@
+.admin-dashboard-component {
+    padding: 20px;
+}
+
+.lesson-form-container {
+    max-width: 600px;
+    margin: auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.lesson-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.lesson-submit-button {
+    background-color: #4a90e2 !important; /* Custom blue background color */
+    color: #fff !important; /* White text */
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect for the lesson submit button */
+.lesson-submit-button:hover {
+    background-color: #357ab8 !important; /* Darker shade on hover */
+}

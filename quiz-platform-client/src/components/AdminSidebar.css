@@ -1,0 +1,74 @@
+/* AdminSidebar.css */
+
+.admin-sidebar .logo {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    height: 100px; /* Assuming a fixed height for the logo container */
+}
+
+.admin-sidebar .logo img {
+    max-width: 60%; /* Adjust the width of the logo image */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.admin-sidebar .bottom-links .logout {
+    /* Add specific styling for the logout link in Sidebar */
+    color: #fff; /* Change the color of the logout link */
+    padding: 20px;
+}
+
+.admin-sidebar .bottom-links .logout:hover {
+    background-color: #d9534f; /* Change the hover color of the logout link */
+    color: #000000; /* Change the text color on hover */
+}
+
+.admin-sidebar {
+    width: 250px;
+    background-color: rgba(32, 160, 126, 0.533)!important;
+    color: #fff;
+    padding-top: 20px;
+    border-radius: 10px; /* Rounded borders */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);  
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    overflow-y: auto;
+}
+
+.admin-sidebar ul {
+    list-style: none;
+   margin-top: 20px;
+}
+
+.admin-sidebar .nav-link {
+    font-size: 1.1em;
+    font-weight: 900;
+    margin-left: 10px;
+    margin-top: 15px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: #e8f7ec;
+   
+}
+
+.admin-sidebar .nav-link:hover {
+    background-color: #dff4e6;
+    color: #000000;
+}
+
+.submenu {
+    margin-left: 15px; /* Indent submenu items */
+}
+
+.submenu .nav-link {
+    font-size: 0.9em; /* Smaller font for submenu */
+    color: #6c757d; /* Optional color for differentiation */
+}
+
+.submenu .nav-link:hover {
+    color: #007bff; /* Optional hover color */
+}
+

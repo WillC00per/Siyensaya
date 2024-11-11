@@ -1,0 +1,9 @@
+/* styles.css */
+.custom-padding {
+    padding-left: 400px; /* Left padding for sidebar */
+    padding-top: 110px;  /* Top padding for navbar */
+}
+
+.container-custom {
+    padding-right: 110px; /* Right padding for the main container */
+}

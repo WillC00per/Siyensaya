@@ -1,0 +1,135 @@
+
+
+.navbar-custom {
+   
+    
+    padding: 10px 10px;
+}
+
+.navbar-brand img {
+    height: 50px; /* Adjust as needed */
+    width: auto;
+}
+
+.navbar-brand {
+    
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-menu {
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    
+}
+
+.navbar-nav {
+    
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav .nav-item {
+    margin: 0 10px;
+}
+
+.navbar-nav .nav-link {
+    color: #000;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #b49aac;
+}
+
+.search-input {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+
+
+
+.login-container {
+    background-image: url("https://i.imgur.com/BbASALP.gif"); 
+    background-size: cover; 
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 120px);
+    background-color: #E5DED3;
+    padding-top: 20px;
+}
+
+.login-form {
+    background-image: url('https://i.imgur.com/3pne2Fn.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    padding: 40px 30px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    border: #E5DED3;
+   
+    max-width: 400px;
+}
+
+.login-form img {
+    width: 100%;
+    margin-bottom: 20px; /* Adjust the spacing between the image and form */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #000000;
+    font-weight: 1000;
+    font-size: medium;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.form-control {
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.login-btn {
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    background-color: #b49aac; /* Background color for default state */
+}
+.login-btn:hover {
+    
+    transform: scale(1.1);
+}
+
+
+.login-btn2:hover {
+    
+    transform: scale(1.05);
+}
+
+.userPass {
+    border-radius: 10px;
+   
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,187 @@
+/* General Layout */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    
+    background: url('https://i.imgur.com/rNNLWwa.png') no-repeat center center fixed; /* Background image */
+    background-size: cover; /* Ensure the background image covers the entire container */
+    font-family: 'Baloo 2', cursive; /* Fun and readable font for the profile container */
+    color: #f8f8f8; /* Light font for contrast */
+}
+
+.student-profile-maincontent {
+    padding: 10px; /* Consistent padding for main content area */
+    flex-grow: 1; /* Allow this area to grow */
+     /* Match margin-left for layout consistency */
+    background-color: rgba(30, 30, 50, 0.9); /* Darker background with opacity */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    display: flex; /* Flex layout for internal structure */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align items to the start */
+}
+
+/* Profile Card Styles */
+.profile-card {
+    margin-left: 250px;
+    background-color: #2a2a3d;
+    border-radius: 10px;
+    padding: 20px; /* Increased padding for spacious feel */
+    margin-bottom: 20px; /* Space below profile card */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    transition: transform 0.3s ease; /* Animation for scaling */
+}
+
+.profile-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+/* Profile Header Styles */
+.profile-header {
+    background: url('https://i.imgur.com/82Uairw.png');
+    border-radius: 10px;
+    padding: 20px; /* Consistent padding */
+    margin-bottom: 20px; /* Space below header */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Profile Avatar Styles */
+.profile-avatar-container {
+    position: relative; /* Relative positioning for the button */
+    display: inline-block;
+    margin-right: 10px;
+    
+
+}
+
+.profile-avatar {
+    width: 100px; /* Consistent avatar size */
+    height: 100px; /* Consistent avatar size */
+    border-radius: 50%; /* Circular avatar */
+    border: 3px solid #f8c445; /* Border color */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.05); /* Scale effect on hover */
+    box-shadow: 0 0 15px rgba(248, 196, 69, 0.7); /* Shadow effect */
+}
+
+/* Profile Info Styles */
+.profile-info {
+    
+    animation: fadeInUp 0.6s ease-in-out;
+    font-family: 'Baloo 2', cursive; /* Fun font for profile info */
+    margin-top: 10px; /* Margin for spacing */
+}
+
+.profile-info h3 {
+    font-size: 2rem; /* Increased font size */
+    font-weight: bold;
+    margin-bottom: 0; /* Remove bottom margin */
+    color: #f8f8f8; /* Heading color */
+}
+
+.profile-info .profile-grade {
+    color: #ffffff; /* Grade text color */
+    font-size: 1.3rem; /* Font size for grade */
+    margin-top: 5px; /* Space above grade text */
+    font-weight: bold; /* Bold grade text */
+}
+
+/* Gamified Sections */
+.gamified-sections {
+    margin-top: auto; /* Push to the bottom */
+    margin-bottom: 20px; /* Space below gamified sections */
+    color: #f8f8f8; /* Text color */
+}
+
+.stats-section {
+    display: flex; /* Flex layout for stats */
+    justify-content: space-between; /* Space between stats */
+    margin-bottom: 20px; /* Space below stats section */
+}
+
+/* Data Box Styles */
+.data-box {
+    background-color: #232333; /* Background color */
+    padding: 10px; /* Padding for content */
+    border-radius: 10px; /* Rounded corners */
+    width: 30%; /* Fixed width for boxes */
+    height: 150px; /* Fixed height for boxes */
+    text-align: center; /* Center text */
+    color: #f8f8f8; /* Text color */
+    display: flex;
+    flex-direction: column; /* Stack contents */
+    justify-content: center; /* Center contents vertically */
+    transition: transform 0.2s; /* Animation for scaling */
+}
+
+.data-box:hover {
+    transform: scale(1.05); /* Scale on hover */
+    box-shadow: 0 0 15px rgba(248, 196, 69, 0.5); /* Shadow effect on hover */
+}
+
+/* Badge Image Styles */
+.badge-image {
+    max-width: 50px; /* Set maximum width */
+    max-height: 50px; /* Set maximum height */
+    margin-bottom: 10px; /* Space below images */
+}
+
+/* Modal Styles */
+.modal-header {
+    background-color: #2a2a3d; /* Modal header background */
+    border-bottom: 1px solid #f8c445; /* Bottom border for contrast */
+}
+
+.modal-title {
+    color: #f8c445; /* Title color */
+    font-family: 'Bubblegum Sans', cursive; /* Fun font for title */
+}
+
+/* Avatar Options in Modal */
+.avatar-option {
+    cursor: pointer; /* Pointer cursor on hover */
+    margin: 10px; /* Margin for spacing */
+    border: 2px solid transparent; /* Default border */
+    transition: border 0.3s ease; /* Smooth border transition */
+}
+
+.avatar-option:hover {
+    border: 2px solid #f8c445; /* Highlight border on hover */
+}
+
+.selected-avatar {
+    border: 2px solid #f8c445; /* Highlight selected avatar */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .student-profile-maincontent {
+        margin-left: 70px; /* No margin on small screens */
+        padding: 5px; /* Reduced padding for smaller screens */
+    }
+
+    .profile-card {
+        padding: 15px; /* Consistent padding for smaller screens */
+        margin-bottom: 15px; /* Adjusted space below */
+        margin-left: 0px;
+    }
+
+    .gamified-sections {
+        margin-bottom: 10px; /* Less margin on small screens */
+    }
+
+    .data-box {
+        width: 100%; /* Full width on smaller screens */
+        margin-bottom: 10px; /* Space between boxes */
+    }
+
+    .avatar-option {
+        margin: 5px; /* Less margin for mobile */
+    }
+}

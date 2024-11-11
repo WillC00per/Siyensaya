@@ -1,0 +1,334 @@
+/* General Layout */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-image: url("https://i.imgur.com/BbASALP.gif"); 
+    background-size: cover;           /* Cover the entire card */
+    
+    font-family: 'Baloo 2', cursive;
+    color: #f8f8f8; /* Light font for contrast */
+}
+
+.student-dashboard-main-content {
+    padding: 10px;
+    flex-grow: 1;
+    margin-left: 70px; /* Changed from px to 0 for full-width layout */
+    background-color: rgba(30, 30, 50, 0.9); /* Darker background with opacity */
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align items to the start */
+}
+
+/* Welcome Box Styles */
+.welcome-box {
+    background-image: url("https://i.imgur.com/BbASALP.gif"); /* Deep purple for consistency */
+    padding: 20px; /* More padding for a spacious feel */
+    border-radius: 12px;
+    color: #ffffff;
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px; /* Space below the welcome box */
+}
+
+/* Quiz Progress Box Styles */
+.quiz-progress-box {
+    background-color: rgba(80, 30, 120, 0.9); /* Same deep purple theme */
+    padding: 15px;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px; /* Space below the quiz progress box */
+}
+
+/* Badges Section Styles */
+.badges-section {
+    margin-top: auto; /* Push this section to the bottom */
+}
+
+/* Main Badges Box */
+.badges-box {
+    background-color: rgba(80, 30, 120, 0.9); /* Deep purple theme */
+    padding: 15px;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    margin-top: 20px; /* Space above badges box */
+}
+
+/* Badges Container */
+.badges-container {
+    display: flex; /* Display badges in a horizontal row */
+    justify-content: space-between; /* Space between achieved and unachieved badges */
+    margin-top: 20px; /* Space above the container */
+    flex-wrap: wrap; /* Allow badges to wrap to next line on small screens */
+}
+
+/* Achieved and Unachieved Badges */
+.achieved-badges,
+.unachieved-badges {
+    flex: 1; /* Allow sections to grow equally */
+    margin: 0 15px; /* Space around sections */
+}
+
+/* Badge Box Styles */
+.badge-box {
+    width: 80px; /* Set width for badges */
+    text-align: center; /* Center the badge name */
+}
+
+/* Badge Icon Styles */
+.badge-icon {
+    width: 50px; /* Set a fixed width for badge images */
+    height: 50px; /* Set a fixed height for badge images */
+}
+
+/* Placeholder Badge Styles */
+.placeholder-badge {
+    width: 80px; /* Set width for placeholder badges */
+    height: 80px; /* Set height for placeholder badges */
+    background-color: rgba(255, 255, 255, 0.1); /* Light background for contrast */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #fff; /* Dashed border for placeholder effect */
+    color: #bbb; /* Light gray color for text */
+    border-radius: 12px; /* Match border radius */
+}
+
+/* Quiz Progress Details */
+.quiz-progress-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Single Box for Gamified Content (Smaller and Horizontal) */
+.quiz-progress-section.single-box {
+    background-color: rgba(80, 30, 120, 0.9); /* Deep purple theme */
+    padding: 15px;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: row; /* Horizontal layout */
+    justify-content: space-between; /* Space between elements */
+    align-items: center; /* Center items vertically */
+    min-height: 150px;
+}
+
+/* Smaller Progress and Results Inside a Single Container */
+.quiz-progress-content {
+    display: flex;
+    justify-content: space-between; /* Horizontal layout */
+    align-items: center;
+    width: 100%;
+}
+
+.progress-bar-container {
+    flex: 1;
+    text-align: center;
+}
+
+.circular-progress-bar {
+    width: 60px; /* Smaller size */
+    height: 60px; /* Smaller size */
+    margin: 0 auto; /* Centering the progress bar */
+    position: relative;
+    animation: rotateProgress 1s ease-in-out forwards;
+}
+
+/* Results Section */
+.results-container {
+    flex: 2;
+    display: flex;
+    justify-content: space-between; /* Horizontal layout */
+    align-items: center;
+    margin-top: 10px; /* Less space above results */
+}
+
+.results-boxes {
+    display: flex;
+    justify-content: space-between; /* Horizontal layout */
+    flex-direction: row;
+}
+
+/* Result Box Styles */
+.result-box {
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 10px;
+    border-radius: 10px;
+    width: 100px;
+    text-align: center;
+    margin: 0 3px; /* Reduced space between result boxes */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.result-box h4 {
+    font-size: 0.9rem;
+    margin-bottom: 3px;
+}
+
+.result-box p {
+    font-size: 0.8rem;
+}
+
+/* Latest Available Quizzes Box Styles */
+.latest-quizzes-box {
+    background-color: rgba(80, 30, 120, 0.9); /* Deep purple theme for latest quizzes */
+    padding: 15px;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px; /* Space between boxes */
+}
+
+/* Latest Quizzes Container */
+.latest-quizzes-container {
+    display: flex; /* Flexbox for horizontal layout */
+    justify-content: space-between; /* Space between items */
+    margin-top: 10px; /* Margin for clarity */
+    flex-wrap: wrap; /* Allow quizzes to wrap on smaller screens */
+}
+
+/* Latest Quiz Box */
+.latest-quiz-box {
+    flex: 1; /* Equal width for each quiz box */
+    margin-right: 10px; /* Space between boxes */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.15); /* Consistent background */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.latest-quiz-box:last-child {
+    margin-right: 0; /* Remove margin for the last item */
+}
+
+/* Button Group - Closer to Scores */
+.button-group {
+    margin-left: 10px; /* Closer to scores */
+    display: flex;
+    flex-direction: row; /* Align buttons horizontally */
+    justify-content: flex-start; /* Align buttons to the start */
+    gap: 5px; /* Reduced gap between buttons */
+}
+
+.button-group button {
+    padding: 5px 8px; /* Smaller button padding */
+    font-size: 0.8rem; /* Smaller button text */
+    background-color: #6a0dad; /* Dark purple background for buttons */
+    color: #ffffff; /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-group button:hover {
+    background-color: #8a2be2; /* Lighter purple on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .student-dashboard-main-content {
+        margin-left: 70px; /* Full width on smaller screens */
+        padding: 5px; /* Reduced padding for smaller screens */
+    }
+
+    .welcome-box,
+    .quiz-progress-box,
+    .badges-box,
+    .latest-quizzes-box {
+        padding: 15px; /* Consistent padding for smaller screens */
+    }
+
+    .quiz-progress-section.single-box {
+        flex-direction: column; /* Stack elements vertically for smaller screens */
+        height: auto;
+        padding: 10px; /* Less padding for smaller devices */
+    }
+
+    .circular-progress-bar {
+        width: 50px; /* Adjust for smaller screens */
+        height: 50px; /* Adjust for smaller screens */
+    }
+
+    .result-box {
+        width: 80px; /* Slightly smaller for mobile */
+    }
+
+    .latest-quiz-box {
+        flex: 1; /* Adjust for smaller screens */
+        margin-right: 5px; /* Reduced spacing */
+        padding: 5px; /* Less padding for mobile */
+    }
+
+    .latest-quiz-box:last-child {
+        margin-right: 0; /* Remove margin for the last item */
+    }
+
+    .button-group {
+        flex-direction: column; /* Stack buttons vertically on small screens */
+        gap: 10px; /* More space between buttons for easier tapping */
+    }
+
+    /* Additional mobile styles */
+    h4, p {
+        font-size: 1rem; /* Larger text for better readability */
+    }
+
+    .result-box {
+        width: 90%; /* Ensure enough space on mobile */
+        padding: 10px; /* Padding for touch targets */
+    }
+
+    .badge-box {
+        width: 60px; /* Smaller width for mobile */
+    }
+
+    .placeholder-badge {
+        width: 60px; /* Adjust placeholder badge for mobile */
+        height: 60px; /* Adjust placeholder badge for mobile */
+    }
+
+    .quiz-progress-details {
+        padding: 5px; /* Less padding on mobile */
+        text-align: center; /* Center text for better alignment */
+    }
+
+    /* New adjustments for quiz content */
+    .quiz-progress-content {
+        flex-direction: column; /* Stack progress content vertically on mobile */
+        align-items: center; /* Center content on mobile */
+    }
+
+    .results-container {
+        flex-direction: column; /* Stack results vertically on mobile */
+        align-items: center; /* Center results on mobile */
+        margin-top: 10px; /* Adjusted margin */
+    }
+
+    .results-boxes {
+        flex-direction: column; /* Stack result boxes on mobile */
+        align-items: center; /* Center result boxes on mobile */
+    }
+
+    .result-box {
+        width: 90%; /* Use more width on mobile for results */
+        margin-bottom: 5px; /* Space between result boxes */
+    }
+
+    .badges-container {
+        flex-direction: column; /* Stack badges vertically on mobile */
+        align-items: center; /* Center badges on mobile */
+    }
+}

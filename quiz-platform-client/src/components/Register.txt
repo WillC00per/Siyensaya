@@ -1,0 +1,21 @@
+/* Register.css */
+.navbar-brand {
+    font-weight: bold;
+}
+
+.nav-link {
+    font-size: 1.1em;
+}
+
+.navbar .form-inline {
+    flex-grow: 1;
+}
+
+.navbar-text {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-text img {
+    margin-right: 10px;
+}

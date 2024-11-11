@@ -1,0 +1,234 @@
+/* Parent container wrapping all lesson elements */
+/* Parent container wrapping all lesson elements */
+.lesson-details-container {
+    background: url('https://i.imgur.com/rNNLWwa.png') no-repeat center center fixed;
+    background-size: cover; /* Ensure the background covers the container */
+    height: 100vh; /* Set height to fill the viewport */
+    min-height: 100vh; /* Maintain minimum height of the viewport */
+    display: flex;
+    justify-content: flex-start; /* Align items horizontally (sidebar on the left) */
+    align-items: flex-start; /* Align items to the top */
+    font-family: 'Baloo 2', cursive;
+    color: #fff;
+    position: relative; /* Allows for absolute positioning of inner elements */
+    padding-top: 80px; /* Adjust padding here if necessary */
+}
+
+
+/* Navbar Wrapper (Independent of other elements) */
+.navbar-wrapper {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensures it stays above other content */
+    background-color: rgba(255, 255, 255, 0); /* Transparent background */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow for navbar */
+}
+
+/* Main content box */
+.lesson-main-content {
+    background: url('https://i.imgur.com/OEojyz5.gif'); /* Background for content */
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 6px 50px rgba(0, 0, 0, 0.7); /* Strong shadow */
+    width: calc(100% ); /* Adjusted to be much wider, considering a smaller sidebar width */
+    align-items: center;
+    max-width: 1600px; /* Increased max width for larger screens */
+    margin-top: 20px;
+    margin-left: 400px; /* Reduced left margin to increase content width */
+}
+
+/* Media query for small devices (portrait phones) */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    .lesson-main-content {
+        margin-left: 70px; /* Reduce margin for small portrait screens */
+        width: calc(100% - 70px); /* Adjust width according to the new margin */
+    }
+}
+
+/* Media query for landscape mode on tablets and phones */
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+    .lesson-details-container {
+        flex-direction: column; /* Stack the elements vertically */
+        align-items: center; /* Center content horizontally */
+    }
+
+    .lesson-main-content {
+        margin-left: 0px; /* Remove left margin in landscape mode */
+        width: 90%; /* Adjust content width to fit landscape screen */
+        max-width: 1200px; /* Max width reduced for smaller screens */
+    }
+
+    .lesson-video-group-wrapper {
+        width: 100%; /* Ensure video group fills the available width */
+        max-width: 600px; /* Keep a reasonable max-width */
+    }
+
+    .lesson-box {
+        max-width: 100%; /* Ensure lesson boxes take full width */
+    }
+}
+
+/* Container wrapping all lesson content */
+.lesson-container {
+    width: 100%;
+    max-width: 1200px; /* Maximum width for larger screens */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* Space between child elements */
+}
+
+/* Video group wrapper */
+.lesson-video-group-wrapper {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    width:600px;
+    gap: 30px; /* Space between individual video boxes */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Lesson Box Styles */
+.lesson-box {
+    background-color: rgba(255, 255, 255, 0.887); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 15px;
+    width: 100%; /* Fixed width for all boxes */
+    max-width: 800px; /* Restrict max width */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effects */
+.lesson-box:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Title Box */
+.lesson-title-box {
+    font-size: 2.5rem;
+    font-family: 'Bubblegum Sans', cursive;
+    color: #000; /* Changed to black */
+}
+
+/* Description Box */
+.lesson-description-box {
+    font-size: 1.2rem;
+    word-wrap: break-word;
+    color: #010000;
+}
+
+/* Media Wrapper for both video and YouTube sections */
+.lesson-media-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between media elements */
+    align-items: center; /* Center videos horizontally */
+    width: 100%;
+}
+
+/* Video Box */
+.lesson-video-box, .lesson-youtube-box {
+    width: 100%;
+    max-width: 560px; /* Fixed size for media */
+    background-color: rgba(255, 251, 251, 0.7);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.lesson-video, .lesson-youtube-video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    max-width: 560px;
+    max-height: 315px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Achievement Popup */
+.achievement-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #2a2a3d;
+    border-radius: 10px;
+    padding: 20px;
+    color: #f8c445;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.3rem;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Loader and Error Styles */
+.loader {
+    font-size: 1.5rem;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+.error {
+    color: #ff4c4c;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Presentations Box Styles */
+.lesson-presentations-box {
+    background-color: white; /* White background */
+    padding: 20px; /* Padding inside the box */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    width: 100%; /* Full width */
+    max-width: 800px; /* Restrict max width */
+    margin-top: 20px; /* Space above the box */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    gap: 10px; /* Space between child elements */
+    color: #000;
+}

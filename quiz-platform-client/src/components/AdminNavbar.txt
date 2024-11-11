@@ -1,0 +1,42 @@
+/* AdminNavbar.css */
+
+.admin-navbar .navbar-brand img {
+    height: 50px;
+    width: 150px;
+}
+
+.admin-navbar .navbar-text img {
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.admin-navbar .navbar {
+    border-bottom-left-radius: 30px;
+    box-shadow: 0 6px 6px -6px #222;
+    background-color: rgba(136, 255, 217, 0.533);
+    padding: 10px 20px;
+    margin-left: 290px; /* Ensure navbar does not overlap with the sidebar */
+}
+
+.admin-navbar .navbar .form-inline {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+
+.admin-navbar .navbar .form-inline .form-control {
+    width: 250px;
+    margin-right: 10px;
+    border-radius: 30px;
+}
+
+.admin-navbar .navbar .form-inline .btn {
+    border-radius: 30px;
+}
+
+.admin-navbar .navbar-text {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}

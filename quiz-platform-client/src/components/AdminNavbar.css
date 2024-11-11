@@ -1,0 +1,152 @@
+/* Base navbar styles */
+.admin-navbar {
+    background-color: #2ecc71; /* Green */
+    padding: 0px 5%; /* Adjusted padding for responsiveness */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex; /* Flex container for alignment */
+    align-items: center; /* Center items vertically */
+    position: fixed;
+    top: 0;
+    margin-left: 400px;
+    left: 0; /* Ensure it starts from the left */
+    width: calc(100% - 200px); /* Take full width minus side margin */
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* Rest of your CSS remains unchanged */
+
+
+/* Flex container for form and branding */
+.form-inline {
+    flex-grow: 1; /* Allow search form to grow and fill available space */
+    display: flex;
+    justify-content: flex-end; /* Align form elements to the right */
+    margin-right: 10px;
+}
+
+.search-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 300px;
+}
+
+.search-input {
+    width: 200px; /* Adjusted width for responsiveness */
+    padding: 6px 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    margin-right: 10px; /* Space between input and button */
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3); /* Adjusted shadow color */
+}
+
+.search-btn {
+    background-color: #27ae60; /* Darker green */
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #229954; /* Darker hover color */
+}
+
+/* Navbar branding */
+.navbar-brand {
+    font-size: 20px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.navbar-logo {
+    height: 30px; /* Smaller logo height */
+    width: auto; /* Maintain aspect ratio */
+}
+
+.navbar-text {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Align to the right */
+}
+
+.profile-picture {
+    margin-right: 10px;
+    border-radius: 50%; /* Circular profile picture */
+    height: 35px; /* Reduced height for responsiveness */
+    width: 35px;
+}
+
+.user-info {
+    font-size: 14px; /* Reduced font size */
+}
+
+.user-role {
+    font-size: 12px;
+    color: #a9dfbf; /* Lighter green for role */
+}
+
+/* Shrunk navbar styles for smaller screens */
+.navbar-shrunk {
+    display: flex; /* Flex container */
+    align-items: center; /* Center items vertically */
+    height: 0px; /* Reduced height */
+}
+
+/* Media query for tablet and smaller devices */
+@media (max-width: 768px) {
+    .admin-navbar {
+        width: 100%; /* Full width on smaller screens */
+        margin-left: 0; /* No sidebar space on mobile */
+        padding: 10px 10px; /* Reduced padding */
+    }
+
+    .search-form {
+        display: none; /* Hide search form on smaller screens */
+    }
+
+    .navbar-brand {
+        font-size: 18px; /* Adjust font size */
+    }
+
+    .profile-picture {
+        width: 30px;
+        height: 30px; /* Smaller profile picture */
+    }
+
+    .user-info {
+        font-size: 12px;
+    }
+}
+
+/* Media query for even smaller screens (mobile) */
+@media (max-width: 480px) {
+    .navbar-logo {
+        height: 25px; /* Further reduce logo size */
+    }
+
+    .admin-navbar {
+        padding: 8px 10px; /* Further reduced padding for compact layout */
+    }
+
+    .user-info {
+        font-size: 10px; /* Further reduction on small screens */
+    }
+
+    .search-input {
+        width: 150px; /* Reduce width on smaller screens */
+    }
+}

@@ -1,0 +1,209 @@
+/* QuizPage.css */
+
+/* Main quiz container */
+.quiz-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh; /* Full height of the viewport */
+    position: relative;
+    padding: 20px;
+    background-image: url('https://i.imgur.com/qg9NFqc.gif'); /* Background image for quiz */
+    background-size: cover; /* Cover the entire container */
+    background-repeat: no-repeat; /* Prevent background repeat */
+}
+
+/* Semi-transparent box for quiz content */
+.quiz-content {
+    background: rgba(128, 0, 128, 0.8); /* Purple background with transparency */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    width: 100%;
+    max-width: 600px; /* Max width for the quiz container */
+    text-align: center; /* Center text */
+}
+
+/* Question and timer box styling */
+.question-timer-box { /* New styling for question and timer combined */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space out timer and question */
+    margin-bottom: 20px; /* Add some spacing below */
+    background: rgba(255, 255, 255, 0.2); /* Light semi-transparent background */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Light border for the box */
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px; /* Padding inside the box */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+.circular-progress { /* Styling for circular progress */
+    margin-right: 20px; /* Space between timer and question */
+}
+
+.quiz-title {
+    flex: 1; /* Take up remaining space */
+    font-size: 50px; /* Larger font size for title */
+    font-weight: bolder; /* Make text bold */
+    margin-bottom: 10px; /* Space below title */
+}
+
+/* Answer options */
+.quiz-answer-options {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons */
+}
+
+/* Styling for answer buttons */
+.quiz-answer-button {
+    background-color: rgba(229, 231, 109, 0.8); /* Slightly lighter purple for answer buttons */
+    color: white;
+    border: none; /* No border */
+    padding: 10px 20px; /* Padding for buttons */
+    margin: 5px 0; /* Space between buttons */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+/* Highlight the selected answer */
+.quiz-answer-button.selected {
+    background-color: #FFD700; /* Change highlight color to gold */
+    color: black; /* Change text color to black for better contrast */
+    border: 2px solid #DAA520; /* Add a golden border for additional emphasis */
+}
+
+/* Hover effect for answer buttons */
+.quiz-answer-button:hover {
+    background-color: #7B68EE; /* Change color on hover */
+}
+
+/* Feedback message */
+.quiz-feedback {
+    margin-top: 15px; /* Space above feedback */
+    font-size: 20px; /* Feedback font size */
+    color: #FFD700; /* Gold color for feedback */
+}
+
+/* Button styling */
+.quiz-btn {
+    background-color: #8A2BE2; /* Purple for buttons */
+    color: white;
+    border: none; /* No border */
+    padding: 15px 30px; /* Increased padding for buttons */
+    margin-top: 10px; /* Space above buttons */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s; /* Smooth transition for hover */
+    font-size: 20px; /* Larger button text */
+}
+
+.quiz-btn:hover {
+    background-color: #c2ed72; /* Change color on hover */
+}
+
+/* Quiz Completed Box */
+.quiz-completed-screen {
+    border: 2px solid #28a745; /* Success green border */
+    padding: 30px; /* Increased padding */
+    background-color: rgba(255, 255, 255, 0.9); /* Light background */
+    text-align: center; /* Center alignment */
+    margin: 20px auto; /* Center in the page */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+}
+
+/* Quiz Score */
+.quiz-score {
+    font-size: 28px; /* Increase score size */
+    font-weight: bold; /* Make text bold */
+}
+
+/* Result popup styling */
+.result-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(128, 0, 128, 0.9); /* Darker purple */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow */
+    z-index: 10; /* On top of other elements */
+    text-align: center; /* Center text */
+}
+
+/* Result message */
+.result-popup.pass {
+    border: 2px solid #32CD32; /* Green border for pass */
+}
+
+.result-popup.fail {
+    border: 2px solid #FF4500; /* Red border for fail */
+}
+
+/* Close button in result popup */
+.result-popup button {
+    background-color: #8A2BE2; /* Purple close button */
+    color: white;
+    border: none; /* No border */
+    padding: 5px 10px; /* Padding for close button */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.result-popup button:hover {
+    background-color: #7B68EE; /* Change color on hover */
+}
+
+/* Level up notification */
+.level-up {
+    position: absolute;
+    top: 20px; /* Position at the top */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 255, 0, 0.8); /* Bright green */
+    color: black;
+    padding: 10px 20px; /* Padding */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 20px; /* Font size */
+}
+
+/* Canvas for confetti effect */
+.confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow clicks to pass through */
+    z-index: 0; /* Behind all other elements */
+}
+
+/* Change background on timer warning */
+.quiz-page.danger {
+    background-color: rgba(255, 0, 0, 0.5); /* Red for danger */
+}
+
+.quiz-page.warning {
+    background-color: rgba(255, 165, 0, 0.5); /* Orange for warning */
+}
+
+/* Circular Progress Bar Styles */
+.circular-progress {
+    position: relative;
+    margin: 20px auto; /* Center the circular progress bar */
+}
+
+.circular-progress circle {
+    transition: stroke-dashoffset 1s linear; /* Smooth transition for progress */
+}
+
+.quiz-progress-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

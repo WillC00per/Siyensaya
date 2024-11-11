@@ -1,0 +1,94 @@
+/* General styles */
+.user-management-page {
+    display: flex;
+    height: 100vh;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100%; /* Ensure full height of the parent container */
+}
+
+.card {
+    width: 90%;
+    background-color: #f1f9f4; /* White background for cards */
+    text-align: center; /* Center contents inside the card */
+    border-radius: 10px;
+    margin-left: 200px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+    padding: 20px;
+}
+
+h1 {
+    font-weight: 900;
+}
+
+.card-header {
+    background-color: #80bca4; /* Green header color */
+    color: white;
+    padding: 10px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.alert-info {
+    margin-bottom: 20px;
+}
+
+.action-buttons {
+    margin-bottom: 20px;
+}
+
+.user-table {
+    width: 100%;
+}
+
+.pagination .page-item {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.pagination .page-link {
+    cursor: pointer;
+}
+
+.pagination .page-link:hover {
+    text-decoration: none;
+}
+
+/* Role-specific background colors */
+.role-cell {
+    text-align: center;
+}
+
+.role-box {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: 900;
+    color: white; /* Default text color */
+}
+
+.role-box.student {
+    background-color: #8a2be2; /* Purple background for student */
+    color: white; /* White text color for student */
+}
+
+.role-box.teacher {
+    background-color: #007bff; /* Blue background for teacher */
+    color: white; /* White text color for teacher */
+}
+
+.role-box.admin {
+    background-color: #28a745; /* Green background for admin */
+    color: white; /* White text color for admin */
+}
+
+/* Style for checkbox column */
+.user-table td:first-child {
+    vertical-align: middle;
+}

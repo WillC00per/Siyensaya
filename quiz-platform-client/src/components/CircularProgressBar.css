@@ -1,0 +1,9 @@
+.circular-progress {
+    display: block; /* Center align */
+    margin: 0 auto; /* Center horizontally */
+}
+
+.circular-progress text {
+    font-size: 16px; /* Font size for the timer text */
+    font-weight: bold; /* Make text bold */
+}

@@ -1,0 +1,192 @@
+/* General Layout */
+.Nav-bar-sg {
+    background-image: url("https://i.imgur.com/BbASALP.gif");
+}
+
+.student-games {
+    padding-left: 350px;
+    background-size: cover;
+    background-position: center;
+    background-image: url("https://i.imgur.com/BbASALP.gif");
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Main Container for Available Games */
+.games-container {
+    padding: 1rem;
+    background: rgba(49, 27, 146, 0.8); /* Semi-transparent dark purple */
+    background: linear-gradient(135deg, rgba(106, 27, 154, 0.8), rgba(32, 32, 32, 0.8));
+    border: 1px solid #000000;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Individual Game Card Styling */
+.game-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Adjust card styles */
+.game-card {
+    width: 18rem;
+    border-radius: 8px;
+    transition: transform 0.2s;
+    background-color: #f1f1f1;
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Game Card Hover Effect */
+.game-card:hover {
+    transform: scale(1.05);
+}
+
+/* Game Card Content Box Styling (at the top) */
+.game-card-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Title and Description */
+.game-card-content h5 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.game-card-content p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+/* Play Button */
+.btn-play {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.btn-play:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Game Iframe Styling */
+/* Fullscreen game container */
+.game-fullscreen-container {
+    width: 100%;
+    height: 100vh; /* Take full viewport height */
+    margin-top: 0; /* Remove margin if any */
+    border-radius: 0; /* Remove border-radius for edge-to-edge fullscreen */
+    box-shadow: none; /* Remove shadow if you want true fullscreen */
+    overflow: hidden; /* Hide any content overflow */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/* Fullscreen iframe style */
+.game-iframe-fullscreen {
+    width: 100%;
+    padding-top: 100px ;
+    padding-left: 200px;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    /* Adjust layout for tablets and small screens */
+    .student-games {
+        padding-left: 400px;
+    }
+
+    .games-container {
+        margin: 1rem;
+    }
+
+    .game-card {
+        width: 45%;  /* Adjust card width for smaller screens */
+        height: 220px;  /* Adjust card height */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Adjust layout for mobile devices */
+    .student-games {
+        padding-left: 1rem;
+        min-height: auto;  /* Allow content to adjust its height */
+    }
+
+    .game-card {
+        width: 100%;  /* Full width for mobile */
+        height: 180px;  /* Reduced card height */
+    }
+
+    .game-card-content h5 {
+        font-size: 1rem; /* Smaller font for title */
+    }
+
+    .game-card-content p {
+        font-size: 0.9rem; /* Smaller font for description */
+    }
+
+    .btn-play {
+        font-size: 14px; /* Smaller font for play button */
+        padding: 6px 12px; /* Smaller padding for mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Adjust layout for very small screens */
+    .game-card {
+        width: 100%;  /* Full width for smaller mobile screens */
+        height: 150px;  /* Further reduced height */
+    }
+
+    .student-games {
+        padding-left: 100px; /* Adjust padding for smaller screens */
+        min-height: 100vh;  /* Ensure the background covers the full height */
+        background-size: cover;
+        background-position: center;
+    }
+
+    .game-iframe-container {
+        padding-top: 75%;  /* Adjust iframe aspect ratio for small screens */
+    }
+}
+

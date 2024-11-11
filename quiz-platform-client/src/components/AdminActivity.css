@@ -1,0 +1,33 @@
+.upload-header {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.file-input {
+    max-width: 400px; /* Optional: Set a max width for file input */
+}
+
+.upload-button {
+    background-color: #007bff; /* Custom button color */
+}
+
+.error-message {
+    font-size: 14px;
+}
+
+.uploaded-game-container {
+    width: 100%;
+    max-width: 800px; /* Max width for the iframe container */
+}
+
+.uploaded-game-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.instruction-message {
+    font-size: 16px; /* Adjust the font size */
+    color: #6c757d; /* Bootstrap's muted color */
+    text-align: center; /* Center the text */
+    margin-bottom: 20px; /* Space below the instruction */
+}
