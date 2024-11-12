@@ -13,7 +13,7 @@ const Login = () => {
         e.preventDefault();
         try {
             // Send login request to the backend
-            const response = await axios.post('http://localhost:3000/login', { username, password });
+             const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/login`, { username, password });
 
             if (response.status === 200) {
                 // Extract token, role, studentId, and grade from the response
