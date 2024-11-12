@@ -41,7 +41,7 @@ function App() {
                     {/* Admin Protected Routes */}
                     <Route path="/edit-user/:username" element={<ProtectedAdminRoute><EditUser /></ProtectedAdminRoute>} />
                     <Route path="/user-management" element={<ProtectedAdminRoute><UserManagement /></ProtectedAdminRoute>} />
-                    <Route path="/quiz-form" element={<ProtectedAdminRoute><QuizForm /></ProtectedAdminRoute>} />
+                    
                     <Route path="/admin" element={<ProtectedAdminRoute><AdminDashboard /></ProtectedAdminRoute>} />
                     <Route path="/register" element={<ProtectedAdminRoute><Register /></ProtectedAdminRoute>} />
                     <Route path="/admindashboard" element={<ProtectedAdminRoute><AdminDashboard /></ProtectedAdminRoute>} />
