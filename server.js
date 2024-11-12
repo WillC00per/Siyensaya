@@ -13,6 +13,7 @@
   require('dotenv').config(); // For environment variables
 
   const User = require('./models/User');
+  
   const Student = require('./models/Student');
   const quizRoutes = require('./routes/quizRoutes');
   const badgeRoutes = require('./routes/badgeRoutes'); // Ensure correct path to your routes file
@@ -66,12 +67,14 @@ const io = socketIo(server, {
   const secretKey = process.env.JWT_SECRET || crypto.randomBytes(32).toString('hex');
 
   // Connect to MongoDB
-  mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/quiz_platform', { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(error => {
-      console.error('Error connecting to MongoDB:', error);
-      process.exit(1);
-    });
+  // Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(error => {
+    console.error('Error connecting to MongoDB:', error);
+    process.exit(1);
+  });
+
 
   // Middleware to verify JWT token
   const verifyToken = (req, res, next) => {
