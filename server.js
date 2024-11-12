@@ -29,19 +29,19 @@
   const server = http.createServer(app); // Create HTTP server
   // Configure CORS for Express
 app.use(cors({
-  origin: ['http://localhost:3001'], // Replace with your client URL
-  methods: ['GET', 'POST', 'PUT'], // Allowed methods
-  credentials: true, // Allows credentials like cookies
+  origin: ['https://siyensaya.onrender.com'], // Replace with the actual Render URL for your backend
+  methods: ['GET', 'POST', 'PUT'],
+  credentials: true,
 }));
 
-// Initialize Socket.IO with CORS options
 const io = socketIo(server, {
   cors: {
-      origin: ['http://localhost:3001'], // Same as above
-      methods: ['GET', 'POST'], // Allowed methods
-      credentials: true // Allows credentials
+      origin: ['https://siyensaya.onrender.com'],
+      methods: ['GET', 'POST'],
+      credentials: true
   }
 });
+
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
