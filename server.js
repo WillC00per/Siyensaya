@@ -422,9 +422,12 @@ app.post('/register', async (req, res) => {
     res.sendFile(path.join(__dirname, 'quiz-platform-client/build', 'index.html'));
   });
 
-  // Start the server
-  const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`Server is running on ${PORT}`);
+ const PORT = process.env.PORT || 3000;
+const HOST = '0.0.0.0';
+
+
+
+server.listen(PORT, HOST, () => {
+  console.log(`Server is running on http://${HOST}:${PORT}`);
 });
 
