@@ -12,8 +12,13 @@
 
   require('dotenv').config(); // For environment variables
 
+<<<<<<< HEAD
   const User = require('./models/user');
   
+=======
+  const User = require('./models/User');
+ 
+>>>>>>> 007fedb038234166a6ea2c95cbf5fba1004bfb71
   const Student = require('./models/Student');
   const quizRoutes = require('./routes/quizRoutes');
   const badgeRoutes = require('./routes/badgeRoutes'); // Ensure correct path to your routes file

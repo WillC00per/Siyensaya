@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user'); // Ensure the path is correct
+const User = require('../models/User'); // Ensure the path is correct
 const Student = require('../models/Student'); // Student model
 const Quiz = require('../models/Quiz'); // Quiz model
 const Badge = require('../models/Badge');
