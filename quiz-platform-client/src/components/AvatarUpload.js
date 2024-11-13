@@ -10,6 +10,8 @@ const AvatarUpload = () => {
   const [error, setError] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState(null); // To display the uploaded avatar
 
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000';
+
   // Handle avatar file selection
   const handleFileChange = (e) => {
     setAvatar(e.target.files[0]);
@@ -31,7 +33,7 @@ const AvatarUpload = () => {
 
       console.log('Uploading avatar...');
 
-      const response = await axios.post('http://localhost:3000/api/upload-avatar', formData, {
+      const response = await axios.post(`${BASE_URL}/api/upload-avatar`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
@@ -85,7 +87,7 @@ const AvatarUpload = () => {
             <div className="uploaded-avatar-container mt-4 border p-3">
               <h3>Uploaded Avatar:</h3>
               <img 
-                src={`http://localhost:3000${avatarUrl}`} // Make sure this URL is correct
+                src={`${BASE_URL}${avatarUrl}`} // Using BASE_URL for the avatar path
                 alt="Uploaded Avatar" 
                 className="uploaded-avatar" 
               />
