@@ -5,6 +5,8 @@ import { Alert, Button, Modal, Form } from 'react-bootstrap';
 import AdminNavbar from './AdminNavbar';
 import Sidebar from './Sidebar';
 
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
+
 const QuizManagement = () => {
     const [quizzes, setQuizzes] = useState([]);
     const [selectedGrade, setSelectedGrade] = useState('all');
