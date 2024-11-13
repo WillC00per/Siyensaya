@@ -171,7 +171,7 @@ const fetchQuizzesByGrade = async (grade) => {
                     </div>
                 </div>
             </div>
-            <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal show={showModal} onHide={handleCloseModal} backdrop={false}>
                 <Modal.Header closeButton>
                     <Modal.Title>Edit Quiz</Modal.Title>
                 </Modal.Header>
