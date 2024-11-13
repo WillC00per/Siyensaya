@@ -1,10 +1,10 @@
 /* QuizzesPage.css */
 
 .quizzes-page {
-    background-image: url("https://i.imgur.com/BbASALP.gif"); 
-    background-size: cover;           /* Cover the entire card */
+    background-image: url("https://i.imgur.com/zCQm77e.gif");
+    background-size: cover;
     background-position: center;
-    min-height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -16,10 +16,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-h1 {
-    color: #ffffff; /* White text for the title */
-    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun font for a gamified look */
-}
 
 /* Quiz container styling */
 .quiz-container {
@@ -32,7 +28,7 @@ h1 {
 
 /* Quiz card styling */
 .quiz-card {
-    background: #282828; /* Dark background for quiz cards */
+    background: #1313127c; /* Dark background for quiz cards */
     border: none;
     border-radius: 15px;
     transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
