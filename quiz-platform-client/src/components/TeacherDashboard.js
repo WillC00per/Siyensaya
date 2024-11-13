@@ -20,7 +20,7 @@ const TeacherDashboard = () => {
     const [quizAverages, setQuizAverages] = useState([]);
     const [averageBadges, setAverageBadges] = useState([]);
 
-    const BASE_URL = 'http://localhost:3000/api';
+    const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
     const token = localStorage.getItem('token');
 
     const axiosConfig = {
@@ -139,11 +139,12 @@ const TeacherDashboard = () => {
             style={{ width: '100px' }}
         >
                                                 <img 
-                                                    src={student.avatarUrl ? `http://localhost:3000${student.avatarUrl}` : '/default-avatar.png'} 
-                                                    alt={student.fullName || 'Student Avatar'} 
-                                                    className="admin-dashboard-component__student-avatar card-img-top rounded-circle mb-2" 
-                                                    style={{ width: '50px', height: '50px' }}
-                                                />
+    src={student.avatarUrl ? `https://siyensaya.onrender.com${student.avatarUrl}` : '/default-avatar.png'} 
+    alt={student.fullName || 'Student Avatar'} 
+    className="admin-dashboard-component__student-avatar card-img-top rounded-circle mb-2" 
+    style={{ width: '50px', height: '50px' }}
+/>
+
                                                 <div className="card-body p-0">
                                                     <h6 className="admin-dashboard-component__student-name card-title">
                                                         {student.fullName || `${student.firstName} ${student.lastName}`}
