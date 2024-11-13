@@ -244,7 +244,7 @@ const StudentDashboard = () => {
                                             achievedBadges.map((badge, index) => (
                                                 <div key={index} className="badge-box">
     <img 
-        src={`${serverUrl}${badge.imageUrl}`} 
+        src={`${'https://siyensaya.onrender.com'}${badge.imageUrl}`} 
         alt={`Badge: ${badge.name}`} 
         className="badge-icon" 
     />
@@ -268,7 +268,7 @@ const StudentDashboard = () => {
                                             unachievedBadges.map((badge, index) => (
                                                 <div key={index} className="badge-box">
     <img 
-        src={`${serverUrl}${badge.imageUrl}`} 
+        src={`${'https://siyensaya.onrender.com'}${badge.imageUrl}`} 
         alt={`Badge: ${badge.name}`} 
         className="badge-icon" 
     />
