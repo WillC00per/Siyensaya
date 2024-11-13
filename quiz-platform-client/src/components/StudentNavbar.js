@@ -32,7 +32,7 @@ const StudentNavbar = () => {
             }
 
             try {
-                const response = await axios.get(`http://localhost:3000/api/profile/${studentId}`);
+                const response = await axios.get(`https://siyensaya.onrender.com:3000/api/profile/${studentId}`);
 
                 // Log the entire response to inspect its structure
                 console.log('API Response:', response.data);
@@ -40,7 +40,7 @@ const StudentNavbar = () => {
                 if (response.status === 200) {
                     // Set the full name directly from the profile data
                     setFullName(response.data.fullName || ''); // Default to empty if not found
-                    setAvatarUrl(response.data.avatarUrl ? `http://localhost:3000${response.data.avatarUrl}` : '/default-avatar.png');
+                    setAvatarUrl(response.data.avatarUrl ? `https://siyensaya.onrender.com${response.data.avatarUrl}` : '/default-avatar.png');
                 }
             } catch (error) {
                 console.error('Error fetching user data:', error);
