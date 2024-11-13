@@ -6,6 +6,8 @@ import AdminNavbar from './AdminNavbar';
 import Sidebar from './Sidebar';
 import './UserManagement.css'; // Import CSS file for styling
 
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
+
 const UserManagement = () => {
     const [users, setUsers] = useState([]);
     const [selectedUsers, setSelectedUsers] = useState([]);
@@ -26,7 +28,7 @@ const UserManagement = () => {
                     navigate('/');
                     return;
                 }
-                const response = await axios.get('http://localhost:3000/user', {
+                const response = await axios.get(`${BASE_URL}/users`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -44,7 +46,8 @@ const UserManagement = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/users');
+                const response = await axios.get(`${BASE_URL}/users`);
+
                 setUsers(response.data); // Assuming response.data is an array of users
             } catch (error) {
                 setMessage(`Error fetching users: ${error.response ? error.response.data.message : error.message}`);
@@ -74,7 +77,8 @@ const handleEdit = (username) => {
     const handleConfirmDelete = async () => {
         if (isBulkDelete && selectedUsers.length > 0) {
             try {
-                await Promise.all(selectedUsers.map(username => axios.delete(`http://localhost:3000/users/${username}`)));
+               await Promise.all(selectedUsers.map(username => axios.delete(`${BASE_URL}/users/${username}`)));
+
                 setUsers(users.filter(user => !selectedUsers.includes(user.username)));
                 setSelectedUsers([]);
                 setMessage('Selected users removed successfully');
@@ -87,7 +91,8 @@ const handleEdit = (username) => {
             }
         } else if (userToDelete) {
             try {
-                await axios.delete(`http://localhost:3000/users/${userToDelete.username}`);
+                await axios.delete(`${BASE_URL}/users/${userToDelete.username}`);
+
                 setUsers(users.filter(user => user.username !== userToDelete.username));
                 setMessage('User removed successfully');
                 setShowMessage(true); // Show the alert message
