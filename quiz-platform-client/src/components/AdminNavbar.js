@@ -7,12 +7,13 @@ const AdminNavbar = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
-    useEffect(() => {
+   useEffect(() => {
         const fetchUserData = async () => {
             try {
                 const token = localStorage.getItem('token');
                 if (token) {
-                    const response = await axios.get('http://localhost:3000/user', {
+                    // Using BASE_URL here
+                    const response = await axios.get(`${BASE_URL}/user`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
@@ -29,7 +30,7 @@ const AdminNavbar = () => {
         };
 
         fetchUserData();
-    }, []);
+    }, [BASE_URL]);
 
     return (
         <nav className="admin-navbar navbar navbar-expand-lg">
