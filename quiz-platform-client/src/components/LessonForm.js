@@ -56,7 +56,7 @@ const LessonForm = () => {
                : await axios.post(`${BASE_URL}/lessons`, lessonData);
 
             await request;
-            navigate('/admin'); // Redirect after successful operation
+            navigate('/teacherdashboard'); // Redirect after successful operation
         } catch (error) {
             console.error(id ? 'Error updating lesson:' : 'Error creating lesson:', error.response ? error.response.data : error.message);
             alert(`Error ${id ? 'updating' : 'creating'} lesson. Please try again later.`);
