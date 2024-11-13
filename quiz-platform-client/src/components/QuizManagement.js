@@ -16,72 +16,50 @@ const QuizManagement = () => {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const checkUserRole = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                if (!token) {
-                    navigate('/');
-                    return;
-                }
-                const response = await axios.get('http://localhost:3000/user', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                if (response.data.role !== 'admin') {
-                    navigate('/');
-                }
-            } catch (error) {
-                navigate('/');
-            }
-        };
-        checkUserRole();
-    }, [navigate]);
+   
 
-    useEffect(() => {
-        fetchQuizzes(); 
-    }, []);
+   useEffect(() => {
+    fetchQuizzes(); 
+}, []);
 
-    const fetchQuizzes = async () => {
-        try {
-            const response = await axios.get('http://localhost:3000/api/quizzes/');
-            setQuizzes(response.data);
-            setMessage('');
-        } catch (error) {
-            setMessage(error.response ? error.response.data : 'Error fetching quizzes');
-            setShowMessage(true);
-            setQuizzes([]);
-        }
-    };
+const fetchQuizzes = async () => {
+    try {
+        const response = await axios.get(`${BASE_URL}/quizzes/`);
+        setQuizzes(response.data);
+        setMessage('');
+    } catch (error) {
+        setMessage(error.response ? error.response.data : 'Error fetching quizzes');
+        setShowMessage(true);
+        setQuizzes([]);
+    }
+};
 
-    const fetchQuestions = async (quizId) => {
-        try {
-            const response = await axios.get(`http://localhost:3000/api/quizzes/${quizId}/questions`);
-            console.log('Fetched questions:', response.data); // Debugging line
-            setQuestions(response.data);
-        } catch (error) {
-            setMessage('Error fetching questions');
-            setShowMessage(true);
-        }
-    };
-    
+const fetchQuestions = async (quizId) => {
+    try {
+        const response = await axios.get(`${BASE_URL}/quizzes/${quizId}/questions`);
+        console.log('Fetched questions:', response.data); // Debugging line
+        setQuestions(response.data);
+    } catch (error) {
+        setMessage('Error fetching questions');
+        setShowMessage(true);
+    }
+};
 
-    const fetchQuizzesByGrade = async (grade) => {
-        if (grade === 'all') {
-            fetchQuizzes();
-            return;
-        }
-        try {
-            const response = await axios.get(`http://localhost:3000/api/quizzes/grade/${grade}`);
-            setQuizzes(response.data);
-            setMessage('');
-        } catch (error) {
-            setMessage(error.response ? error.response.data : 'Error fetching quizzes');
-            setShowMessage(true);
-            setQuizzes([]);
-        }
-    };
+const fetchQuizzesByGrade = async (grade) => {
+    if (grade === 'all') {
+        fetchQuizzes();
+        return;
+    }
+    try {
+        const response = await axios.get(`${BASE_URL}/quizzes/grade/${grade}`);
+        setQuizzes(response.data);
+        setMessage('');
+    } catch (error) {
+        setMessage(error.response ? error.response.data : 'Error fetching quizzes');
+        setShowMessage(true);
+        setQuizzes([]);
+    }
+};
 
     const handleShowModal = (quiz) => {
         setSelectedQuiz(quiz);
@@ -95,29 +73,29 @@ const QuizManagement = () => {
         setShowModal(false);
     };
 
-    const handleEditQuiz = async (event) => {
-        event.preventDefault();
-        try {
-            const updatedQuiz = {
-                ...selectedQuiz,
-                title: event.target.title.value,
-                description: event.target.description.value,
-                time_limit: event.target.time_limit.value,
-                passing_score: event.target.passing_score.value,
-                grades: event.target.grades.value.split(',').map(Number),
-                questions // Include questions in the payload
-            };
+   const handleEditQuiz = async (event) => {
+    event.preventDefault();
+    try {
+        const updatedQuiz = {
+            ...selectedQuiz,
+            title: event.target.title.value,
+            description: event.target.description.value,
+            time_limit: event.target.time_limit.value,
+            passing_score: event.target.passing_score.value,
+            grades: event.target.grades.value.split(',').map(Number),
+            questions // Include questions in the payload
+        };
 
-            await axios.put(`http://localhost:3000/api/quizzes/${selectedQuiz._id}`, updatedQuiz);
-            setQuizzes(quizzes.map(quiz => (quiz._id === selectedQuiz._id ? updatedQuiz : quiz)));
-            setMessage('Quiz updated successfully');
-            setShowMessage(true);
-            handleCloseModal();
-        } catch (error) {
-            setMessage(`Error updating quiz: ${error.response ? error.response.data : error.message}`);
-            setShowMessage(true);
-        }
-    };
+        await axios.put(`${BASE_URL}/quizzes/${selectedQuiz._id}`, updatedQuiz);
+        setQuizzes(quizzes.map(quiz => (quiz._id === selectedQuiz._id ? updatedQuiz : quiz)));
+        setMessage('Quiz updated successfully');
+        setShowMessage(true);
+        handleCloseModal();
+    } catch (error) {
+        setMessage(`Error updating quiz: ${error.response ? error.response.data : error.message}`);
+        setShowMessage(true);
+    }
+};
 
     const handleQuestionChange = (index, field, value) => {
         const updatedQuestions = [...questions];
