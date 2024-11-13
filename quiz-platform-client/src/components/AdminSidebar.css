@@ -68,6 +68,54 @@
     color: #6c757d; /* Optional color for differentiation */
 }
 
+/* Media Query to collapse sidebar on mobile */
+@media (max-width: 768px) {
+    .admin-sidebar {
+        width: 80px; /* Shrink sidebar width on mobile */
+    }
+
+    .admin-sidebar .logo {
+        justify-content: flex-start; /* Align the logo to the left */
+        height: 50px; /* Adjust the height for the smaller sidebar */
+    }
+
+    .admin-sidebar .logo img {
+        max-width: 40%; /* Adjust the logo size for the smaller sidebar */
+    }
+
+    .admin-sidebar ul {
+        margin-top: 10px; /* Adjust margin for the list */
+    }
+
+    .admin-sidebar .nav-link {
+        font-size: 0.9em;
+        padding-left: 5px; /* Reduce padding */
+        text-align: center; /* Center the text for the collapsed sidebar */
+    }
+
+    /* Hide the text of navigation items on mobile */
+    .admin-sidebar .nav-link span {
+        display: none;
+    }
+
+    .submenu .nav-link {
+        font-size: 0.8em; /* Reduce font size for submenu */
+    }
+
+    /* Optional: Hide submenu text in collapsed mode */
+    .submenu .nav-link span {
+        display: none;
+    }
+
+    /* Collapse the sidebar completely if necessary */
+    .admin-sidebar.collapsed {
+        width: 80px; /* Collapsed state */
+    }
+
+    .admin-sidebar.collapsed .nav-link {
+        padding-left: 5px; /* Adjust padding when collapsed */
+    }
+
 .submenu .nav-link:hover {
     color: #007bff; /* Optional hover color */
 }
