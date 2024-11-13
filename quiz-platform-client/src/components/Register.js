@@ -50,30 +50,32 @@ const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
         // checkUserRole();
     }, [navigate]);
 
-    const handleSubmit = async (e) => {
+   const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) {
             return;
-        }try {
-    await axios.post(`${BASE_URL}/register`, { 
-        username, 
-        password, 
-        role,
-        studentNumber: role === 'student' ? studentNumber : undefined,
-        email,
-        firstName,
-        middleName,
-        lastName,
-        birthday,
-        address,
-        contactNumber,
-        grade: role === 'student' ? grade : undefined,
-        employeeNumber: role !== 'student' ? employeeNumber : undefined
-    });
-    setMessage('User registered successfully');
-} catch (error) {
-    setMessage(`Error during registration: ${error.response ? error.response.data : error.message}`);
-}
+        }
+        try {
+            await axios.post(`${BASE_URL}/register`, { 
+                username, 
+                password, 
+                role,
+                studentNumber: role === 'student' ? studentNumber : undefined,
+                email,
+                firstName,
+                middleName,
+                lastName,
+                birthday,
+                address,
+                contactNumber,
+                grade: role === 'student' ? grade : undefined,
+                employeeNumber: role !== 'student' ? employeeNumber : undefined
+            });
+            setMessage('User registered successfully');
+        } catch (error) {
+            setMessage(`Error during registration: ${error.response ? error.response.data : error.message}`);
+        }
+    };
 
     const validateForm = () => {
         let formIsValid = true;
