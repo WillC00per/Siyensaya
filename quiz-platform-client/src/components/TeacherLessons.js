@@ -4,6 +4,8 @@ import './TeacherLessons.css';
 import TeacherSidebar from './TeacherSidebar';
 import TeacherNavbar from './TeacherNavbar';
 
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
+
 const TeacherLessons = () => {
     const [lessons, setLessons] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -27,47 +29,47 @@ const TeacherLessons = () => {
     const [quizModalOpen, setQuizModalOpen] = useState(false); // New state for quiz modal
     const [selectedQuizData, setSelectedQuizData] = useState(null); // New state for selected quiz data
 
-    useEffect(() => {
-        const fetchLessons = async () => {
-            setLoading(true);
-            try {
-                const response = await axios.get('http://localhost:3000/api/lessons/teacher-lessons');
-                setLessons(response.data);
-            } catch (err) {
-                setError('Error fetching lessons. Please try again later.');
-            } finally {
-                setLoading(false);
-            }
-        };
+   useEffect(() => {
+    const fetchLessons = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.get(`${BASE_URL}/lessons/teacher-lessons`);
+            setLessons(response.data);
+        } catch (err) {
+            setError('Error fetching lessons. Please try again later.');
+        } finally {
+            setLoading(false);
+        }
+    };
 
-        const fetchBadgeCompletionReport = async () => {
-            setLoadingReport(true);
-            try {
-                const response = await axios.get('http://localhost:3000/api/badges/completion-report');
-                setReport(response.data);
-            } catch (err) {
-                setErrorReport('Error fetching badge completion report. Please try again later.');
-            } finally {
-                setLoadingReport(false);
-            }
-        };
+    const fetchBadgeCompletionReport = async () => {
+        setLoadingReport(true);
+        try {
+            const response = await axios.get(`${BASE_URL}/badges/completion-report`);
+            setReport(response.data);
+        } catch (err) {
+            setErrorReport('Error fetching badge completion report. Please try again later.');
+        } finally {
+            setLoadingReport(false);
+        }
+    };
 
-        const fetchQuizCompletionReport = async () => {
-            setLoadingQuizReport(true);
-            try {
-                const response = await axios.get('http://localhost:3000/api/quizzes/completion-report');
-                setQuizReport(response.data);
-            } catch (err) {
-                setErrorQuizReport('Error fetching quiz completion report. Please try again later.');
-            } finally {
-                setLoadingQuizReport(false);
-            }
-        };
+    const fetchQuizCompletionReport = async () => {
+        setLoadingQuizReport(true);
+        try {
+            const response = await axios.get(`${BASE_URL}/quizzes/completion-report`);
+            setQuizReport(response.data);
+        } catch (err) {
+            setErrorQuizReport('Error fetching quiz completion report. Please try again later.');
+        } finally {
+            setLoadingQuizReport(false);
+        }
+    };
 
-        fetchLessons();
-        fetchBadgeCompletionReport();
-        fetchQuizCompletionReport();
-    }, []);
+    fetchLessons();
+    fetchBadgeCompletionReport();
+    fetchQuizCompletionReport();
+}, []);
 
     const openViewedStudentsModal = (students) => {
         setViewedStudents(students);
