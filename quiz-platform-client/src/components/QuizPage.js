@@ -38,7 +38,7 @@ const QuizPage = () => {
     const navigate = useNavigate();
     const [questions, setQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [selectedAnswers, setSelectedAnswers] = useState({});
+    const [selectedAnswer, setSelectedAnswer] = useState('');
     const [score, setScore] = useState(0);
     const [quizCompleted, setQuizCompleted] = useState(false);
     const [timeLeft, setTimeLeft] = useState(30);
@@ -93,19 +93,17 @@ const QuizPage = () => {
 
     const handleAnswerSelect = (answer) => {
         const currentQuestion = questions[currentQuestionIndex];
-        setSelectedAnswers((prevState) => ({
-            ...prevState,
-            [currentQuestion.id]: answer, // Store the selected answer for the current question
-        }));
+        setSelectedAnswer(answer);
+        clearTimeout(handleTimeOut); // Stop any previous timer
 
         if (answer === currentQuestion.correct_answer) {
-            setScore((prevScore) => prevScore + 1); // Update the score
-            setComboCounter((prevCombo) => prevCombo + 1);
+            setScore(prevScore => prevScore + 1);  // Correctly updating the score
+            setComboCounter(comboCounter + 1);
             setFeedbackMessage('Correct!');
             speak('Correct!');
             triggerConfetti();
 
-            if ((comboCounter + 1) % 3 === 0) {
+            if (comboCounter % 3 === 0) {
                 setLevelUpVisible(true);
                 setTimeout(() => setLevelUpVisible(false), 3000);
             }
@@ -116,21 +114,15 @@ const QuizPage = () => {
             speak(correctAnswerMessage);
         }
 
-        // Move to the next question after showing feedback
         setTimeout(() => {
-            setFeedbackMessage(''); // Clear feedback between questions
-            setTimeLeft(questionTimeLimit); // Reset timer for the next question
-
-            setCurrentQuestionIndex((prevIndex) => {
-                const nextIndex = prevIndex + 1;
-                if (nextIndex < questions.length) {
-                    return nextIndex; // Move to the next question
-                } else {
-                    setQuizCompleted(true);
-                    handleFinishQuiz();
-                    return prevIndex; // No more questions; keep the index the same
-                }
-            });
+            if (currentQuestionIndex + 1 < questions.length) {
+                setCurrentQuestionIndex(currentQuestionIndex + 1);
+                setSelectedAnswer('');
+                setTimeLeft(questionTimeLimit);
+            } else {
+                setQuizCompleted(true);
+                handleFinishQuiz();
+            }
         }, 2000);
     };
 
@@ -143,6 +135,7 @@ const QuizPage = () => {
         setTimeout(() => {
             if (currentQuestionIndex + 1 < questions.length) {
                 setCurrentQuestionIndex(currentQuestionIndex + 1);
+                setSelectedAnswer('');
                 setTimeLeft(questionTimeLimit);
             } else {
                 setQuizCompleted(true);
@@ -181,18 +174,23 @@ const QuizPage = () => {
         setQuizCompleted(true); 
 
         try {
-            const studentId = localStorage.getItem('studentId');
+            const studentId = localStorage.getItem('studentId'); // Get studentId from localStorage
             const endTime = new Date();
-            const timeTaken = Math.round((endTime - startTime) / 1000);
-            const passed = score >= (questions.length / 2);
+            const timeTaken = Math.round((endTime - startTime) / 1000); // Time taken in seconds
+            const passed = score >= (questions.length / 2); // Example passing criteria
 
+            // Set result message and visibility based on the result
             setIsPass(passed);
             setResultMessage(passed ? "Congratulations! You have passed!" : "Sorry, you have failed.");
             setResultPopupVisible(true);
-            speak(passed ? "Congratulations! You have passed the quiz!" : "Sorry, you have failed the quiz.");
+            
+            // Voice announcement for the results
+            speak(passed ? "Congratulations! You have passed the quiz!" : "Sorry, you have failed the quiz."); // Voice announcement
 
-            const answers = questions.map((question) => selectedAnswers[question.id] || '');
-            const feedback = "Great quiz!";
+            const answers = questions.map(() => selectedAnswer); // Placeholder, adjust if needed
+            const feedback = "Great quiz!"; // Example feedback
+
+            // Calculate percentage score
             const percentageScore = (score / questions.length) * 100;
 
             await axios.post(`${BASE_URL}/quizzes/${quizId}/submit`, {
@@ -202,8 +200,10 @@ const QuizPage = () => {
                 feedback: feedback,
                 attempt: 1,
                 passed: passed,
-                percentage_score: percentageScore,
+                percentage_score: percentageScore, // Include the percentage score
             });
+
+            // No automatic redirect here; just show the result popup
         } catch (error) {
             console.error('Error submitting quiz:', error);
         }
@@ -227,25 +227,29 @@ const QuizPage = () => {
                         {questions[currentQuestionIndex]?.answer_options.map((option, index) => (
                             <button
                                 key={index}
-                                className={`quiz-answer-button quiz-btn m-2 ${selectedAnswers[questions[currentQuestionIndex].id] === option ? 'selected' : ''}`}
+                                className={`quiz-answer-button quiz-btn m-2 ${selectedAnswer === option ? 'selected' : 'btn-secondary'}`}
                                 onClick={() => handleAnswerSelect(option)}
-                                disabled={!!selectedAnswers[questions[currentQuestionIndex].id]} // disable after an answer is selected
                             >
                                 {option}
                             </button>
                         ))}
                     </div>
-                    {feedbackMessage && <div className="feedback-message">{feedbackMessage}</div>}
+                    <p className="quiz-feedback">{feedbackMessage}</p>
+                    {levelUpVisible && (
+                        <div className="level-up-popup">
+                            <h3>Combo Level Up!</h3>
+                        </div>
+                    )}
+                    {resultPopupVisible && (
+                        <div className="result-popup">
+                            <h2>{resultMessage}</h2>
+                            <p>{isPass ? "Great job! Keep up the good work." : "Don't give up! Try again."}</p>
+                            <button onClick={() => navigate('/quiz-results')}>View Results</button>
+                        </div>
+                    )}
                 </div>
             )}
-            <canvas ref={canvasRef} className="confetti-canvas"></canvas>
-            {levelUpVisible && <div className="level-up-banner">Level Up!</div>}
-            {resultPopupVisible && (
-                <div className="result-popup">
-                    <h2>{resultMessage}</h2>
-                    <button onClick={() => setResultPopupVisible(false)}>Close</button>
-                </div>
-            )}
+            <canvas ref={canvasRef} className="confetti-canvas" />
         </div>
     );
 };
