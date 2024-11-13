@@ -5,6 +5,8 @@ import TeacherSidebar from './TeacherSidebar';
 import TeacherNavbar from './TeacherNavbar';
 import './LessonForm.css'; // Ensure you have this file for styling
 
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
+
 const LessonForm = () => {
     const { id } = useParams(); // Get the lesson ID from the URL
     const [title, setTitle] = useState('');
@@ -26,22 +28,21 @@ const LessonForm = () => {
 
     // Fetch lesson details if editing
     useEffect(() => {
-        if (id) {
-            axios.get(`http://localhost:3000/api/lessons/${id}`)
-                .then(response => {
-                    const lesson = response.data;
-                    setTitle(lesson.title);
-                    setDescription(lesson.description);
-                    setYoutubeLink(lesson.youtubeLink || '');
-                    setGrade(lesson.grade || '');
-                })
-                .catch(error => {
-                    console.error('Error fetching lesson details:', error.response ? error.response.data : error.message);
-                    alert('Error fetching lesson details. Please try again later.');
-                });
-        }
-    }, [id]);
-
+    if (id) {
+        axios.get(`${BASE_URL}/lessons/${id}`)
+            .then(response => {
+                const lesson = response.data;
+                setTitle(lesson.title);
+                setDescription(lesson.description);
+                setYoutubeLink(lesson.youtubeLink || '');
+                setGrade(lesson.grade || '');
+            })
+            .catch(error => {
+                console.error('Error fetching lesson details:', error.response ? error.response.data : error.message);
+                alert('Error fetching lesson details. Please try again later.');
+            });
+    }
+}, [id]);
     const handleSubmit = async (e) => {
         e.preventDefault();
         const lessonData = new FormData();
@@ -58,8 +59,8 @@ const LessonForm = () => {
 
         try {
             const request = id 
-                ? axios.put(`http://localhost:3000/api/lessons/${id}`, lessonData)
-                : axios.post('http://localhost:3000/api/lessons', lessonData);
+               ? await axios.put(`${BASE_URL}/lessons/${id}`, lessonData)
+               : await axios.post(`${BASE_URL}/lessons`, lessonData);
 
             await request;
             navigate('/admin'); // Redirect after successful operation
