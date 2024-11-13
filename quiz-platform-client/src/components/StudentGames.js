@@ -14,7 +14,7 @@ const StudentGames = () => {
     const [selectedGameUrl, setSelectedGameUrl] = useState(null);
     const navigate = useNavigate();
     const iframeRef = useRef(null);
-    const serverUrl = 'http://localhost:3000'; // Base server URL
+    const serverUrl = 'https://siyensaya.onrender.com'; // Base server URL
 
     useEffect(() => {
         const studentGrade = localStorage.getItem('grade');
