@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './AdminNavbar.css'; // Import your custom CSS file
 import axios from 'axios';
 
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
+
 const AdminNavbar = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
