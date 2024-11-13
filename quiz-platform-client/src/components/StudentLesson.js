@@ -5,6 +5,8 @@ import NavigationBar from './StudentNavbar';
 import StudentSidebar from './StudentSidebar';
 import './StudentLesson2.css';
 
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
+
 const StudentLessons = () => {
     const [lessons, setLessons] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -14,11 +16,14 @@ const StudentLessons = () => {
     const studentId = localStorage.getItem('studentId'); // Assume studentId is stored after login
     const navigate = useNavigate();
 
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
+
+
     useEffect(() => {
         const fetchLessons = async () => {
             setLoading(true);
             try {
-                const response = await axios.get(`http://localhost:3000/api/lessons/grade/${studentGrade}`);
+                const response = await axios.get(`${BASE_URL}/lessons/grade/${studentGrade}`);
                 setLessons(response.data);
             } catch (err) {
                 setError('Error fetching lessons. Please try again later.');
@@ -38,7 +43,7 @@ const StudentLessons = () => {
     const onViewLesson = async (lessonId) => {
         try {
             // Mark the lesson as viewed by the student
-            await axios.post(`http://localhost:3000/api/lessons/${lessonId}/view`, { studentId });
+           await axios.post(`${BASE_URL}/lessons/${lessonId}/view`, { studentId });
 
             // Navigate to the lesson details page
             navigate(`/lessons/${lessonId}`);
@@ -64,7 +69,7 @@ const StudentLessons = () => {
                                 key={lesson._id}
                                 className="lesson-card border p-3 m-2"
                                 style={{
-                                    backgroundImage: `url(${lesson.imageUrl ? `http://localhost:3000${lesson.imageUrl}` : ''})`,
+                                    backgroundImage: `url(${lesson.imageUrl ? `https://siyensaya.onrender.com${lesson.imageUrl}` : ''})`,
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center',
                                 }}
