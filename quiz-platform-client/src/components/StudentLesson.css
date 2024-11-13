@@ -1,7 +1,4 @@
-html, body {
-    height: 100%; /* Ensure the body and html cover full height */
-    margin: 0; /* Remove default margins */
-}
+
 
 .lesson-details-container {
     background: url('https://i.imgur.com/rNNLWwa.png') no-repeat center center fixed;
