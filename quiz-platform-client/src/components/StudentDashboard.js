@@ -10,7 +10,7 @@ import { FaClipboardList } from 'react-icons/fa';
 import './StudentDashboard.css';
 import { useNavigate } from 'react-router-dom';
 const StudentDashboard = () => {
-    const serverUrl = 'http://localhost:3000'; // Define the server URL
+    const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
 
     const [studentData, setStudentData] = useState(null);
     const [availableQuizzes, setAvailableQuizzes] = useState([]);
@@ -36,7 +36,8 @@ const StudentDashboard = () => {
         const studentId = localStorage.getItem('studentId');
         const fetchStudentData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/student/${studentId}`);
+                const response = await axios.get(`${BASE_URL}/student/${studentId}`);
+
                 return response.data;
             } catch (error) {
                 console.error('Error fetching student data:', error);
@@ -46,7 +47,7 @@ const StudentDashboard = () => {
 
         const fetchAvailableQuizzes = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/quizzes');
+                const response = await axios.get(`${BASE_URL}/quizzes`);
                 return response.data;
             } catch (error) {
                 console.error('Error fetching quizzes:', error);
@@ -56,7 +57,7 @@ const StudentDashboard = () => {
 
         const fetchLatestQuizzes = async (grade) => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/quizzes/grade/${grade}`);
+                const response = await axios.get(`${BASE_URL}/quizzes/grade/${grade}`);
                 return response.data;
             } catch (error) {
                 console.error('Error fetching latest quizzes:', error);
@@ -66,7 +67,7 @@ const StudentDashboard = () => {
 
         const fetchBadges = async (studentId) => {
             try {
-                const badgesResponse = await axios.get(`http://localhost:3000/api/students/${studentId}/badges`);
+                const badgesResponse = await axios.get(`${BASE_URL}/students/${studentId}/badges`);
                 return badgesResponse.data;
             } catch (error) {
                 console.error('Error fetching badges:', error);
