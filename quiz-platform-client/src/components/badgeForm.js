@@ -14,7 +14,7 @@ const BadgeForm = ({ onSubmitSuccess }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [createdBadge, setCreatedBadge] = useState(null); // New state to store the created badge
-
+  const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
   // Form submission handler for creating a new badge
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,9 +43,9 @@ const BadgeForm = ({ onSubmitSuccess }) => {
       }
 
       // Send POST request to create a new badge
-      const response = await axios.post('http://localhost:3000/api/badges', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      const response = await axios.post(`${BASE_URL}/badges`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+});
 
       console.log('Badge created successfully:', response.data);
       setError(null); // Clear any previous error
@@ -177,10 +177,10 @@ const BadgeForm = ({ onSubmitSuccess }) => {
           <p><strong>Grade:</strong> {createdBadge.grade}</p>
           {createdBadge.imageUrl && (
             <img 
-            src={`http://localhost:3000${createdBadge.imageUrl}`} // Ensure this URL is correct
-            alt={createdBadge.name} 
-            style={{ maxWidth: '100px', maxHeight: '100px', marginTop: '10px' }} 
-        />
+    src={createdBadge.imageUrl ? `${BASE_URL.replace('/api', '')}${createdBadge.imageUrl}` : '/default-badge.png'} 
+    alt={createdBadge.name} 
+    style={{ maxWidth: '100px', maxHeight: '100px', marginTop: '10px' }} 
+/>
         
           )}
         </div>
