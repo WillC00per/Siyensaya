@@ -244,60 +244,43 @@
 
     // Submit quiz answers
     // Submit quiz answers
-    router.post('/quizzes/:quizId/submit', async (req, res) => {
+   router.post('/quizzes/:quizId/submit', async (req, res) => {
         try {
-            const { studentId, answers, time_taken, feedback, attempt } = req.body;
+            const { studentId, answers, time_taken, feedback, attempt, percentageScore } = req.body; // Accept percentageScore from frontend
             const quizId = req.params.quizId;
-
+    
             // Validate request body
-            if (!studentId || !Array.isArray(answers) || !time_taken || !feedback || !attempt) {
+            if (!studentId || !Array.isArray(answers) || !time_taken || !feedback || !attempt || percentageScore === undefined) {
                 return res.status(400).send('Invalid request body');
             }
-
-            const questions = await Question.find({ quiz_id: quizId });
+    
             const quiz = await Quiz.findById(quizId);
-
+    
             if (!quiz) {
                 return res.status(404).send('Quiz not found');
             }
-
-            // Validate answers format
-            if (answers.length !== questions.length) {
-                return res.status(400).send('Invalid answers format. Ensure it matches the number of questions.');
-            }
-
-            let score = 0;
-            questions.forEach((question, index) => {
-                if (question.correct_answer === answers[index]) {
-                    score++;
-                }
-            });
-
-            // Calculate percentage score
-            const percentageScore = (score / questions.length) * 100;
-
-            // Determine pass/fail based on passing percentage
+    
+            // Create result with the provided percentage score
             const passed = percentageScore >= quiz.passing_score;
-
-            // Create result
+    
             const result = new Result({
                 user_id: studentId,
                 quiz_id: quizId,
-                score: percentageScore, // percentage score
+                score: percentageScore, // Use the score sent from the frontend
                 feedback: feedback,
                 time_taken: time_taken,
                 attempt: attempt,
                 passed: passed
             });
-
+    
             await result.save();
-
+    
             // Update student's quizScores
             const student = await Student.findById(studentId);
             if (!student) {
                 return res.status(404).send('Student not found');
             }
-
+    
             // Check if the quiz has already been taken
             const existingQuizScore = student.quizScores.find(qs => qs.quizId.toString() === quizId);
             if (existingQuizScore) {
@@ -312,15 +295,16 @@
                     dateTaken: new Date()
                 });
             }
-
+    
             await student.save();
-
+    
             res.status(200).send(result);
         } catch (error) {
             console.error('Error submitting quiz answers:', error);
             res.status(500).send('Internal server error');
         }
     });
+    
 
     router.put('/quizzes/:quizId', async (req, res) => {
         try {
