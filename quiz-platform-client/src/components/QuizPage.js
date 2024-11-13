@@ -92,41 +92,46 @@ const QuizPage = () => {
     }, [questions, questionTimeLimit, quizCompleted, currentQuestionIndex]);
 
     const handleAnswerSelect = (answer) => {
-        const currentQuestion = questions[currentQuestionIndex];
-        setSelectedAnswers(prevState => ({
-            ...prevState,
-            [currentQuestion.id]: answer, // Store the selected answer for the current question
-        }));
-        clearTimeout(handleTimeOut); // Stop any previous timer
+    const currentQuestion = questions[currentQuestionIndex];
+    setSelectedAnswers((prevState) => ({
+        ...prevState,
+        [currentQuestion.id]: answer, // Store the selected answer for the current question
+    }));
 
-        if (answer === currentQuestion.correct_answer) {
-            setScore(prevScore => prevScore + 1);  // Correctly updating the score
-            setComboCounter(comboCounter + 1);
-            setFeedbackMessage('Correct!');
-            speak('Correct!');
-            triggerConfetti();
+    if (answer === currentQuestion.correct_answer) {
+        setScore((prevScore) => prevScore + 1); // Update the score
+        setComboCounter((prevCombo) => prevCombo + 1);
+        setFeedbackMessage('Correct!');
+        speak('Correct!');
+        triggerConfetti();
 
-            if (comboCounter % 3 === 0) {
-                setLevelUpVisible(true);
-                setTimeout(() => setLevelUpVisible(false), 3000);
-            }
-        } else {
-            setComboCounter(0);
-            const correctAnswerMessage = `Wrong! The correct answer is ${currentQuestion.correct_answer}.`;
-            setFeedbackMessage(correctAnswerMessage);
-            speak(correctAnswerMessage);
+        if ((comboCounter + 1) % 3 === 0) {
+            setLevelUpVisible(true);
+            setTimeout(() => setLevelUpVisible(false), 3000);
         }
+    } else {
+        setComboCounter(0);
+        const correctAnswerMessage = `Wrong! The correct answer is ${currentQuestion.correct_answer}.`;
+        setFeedbackMessage(correctAnswerMessage);
+        speak(correctAnswerMessage);
+    }
 
-        setTimeout(() => {
-            if (currentQuestionIndex + 1 < questions.length) {
-                setCurrentQuestionIndex(currentQuestionIndex + 1);
-                setTimeLeft(questionTimeLimit);
+    setTimeout(() => {
+        setFeedbackMessage(''); // Clear feedback between questions
+        setTimeLeft(questionTimeLimit); // Reset timer for the next question
+
+        setCurrentQuestionIndex((prevIndex) => {
+            const nextIndex = prevIndex + 1;
+            if (nextIndex < questions.length) {
+                return nextIndex; // Move to the next question
             } else {
                 setQuizCompleted(true);
                 handleFinishQuiz();
+                return prevIndex; // No more questions; keep the index the same
             }
-        }, 2000);
-    };
+        });
+    }, 2000);
+};
 
     const handleTimeOut = () => {
         const currentQuestion = questions[currentQuestionIndex];
