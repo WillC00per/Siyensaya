@@ -87,21 +87,20 @@ const LessonDetails = () => {
                             {/* Presentations Section */}
                             {lesson.presentation && (
     <div className="lesson-presentations-box">
-        <h3>Uploaded Presentation (Click to Download)s</h3>
-        <div className="presentation-item" style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-            <FaFilePdf size={40} color="red" /> {/* PDF icon */}
-            <a 
-    href={`${BASE_URL}/download/${lesson.presentation.split('/').pop()}`} 
-    download 
-    style={{ marginLeft: '10px', textDecoration: 'underline', color: 'blue' }}
->
-    Download
-</a>
-
-                {lesson.presentation.split('/').pop()} {/* Display filename */}
-            </a>
-        </div>
+    <h3>Uploaded Presentation (Click to Download)</h3>
+    <div className="presentation-item" style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+        <FaFilePdf size={40} color="red" /> {/* PDF icon */}
+        <a 
+            href={`${BASE_URL}/download/${lesson.presentation.split('/').pop()}`} 
+            download 
+            style={{ marginLeft: '10px', textDecoration: 'underline', color: 'blue' }}
+        >
+            Download
+        </a>
+        {lesson.presentation.split('/').pop()} {/* Display filename */}
     </div>
+</div>
+
 )}
 
 
