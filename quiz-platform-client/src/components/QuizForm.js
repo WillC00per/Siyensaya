@@ -28,6 +28,7 @@ const QuizForm = () => {
         const timeLimit = query.get('timeLimit') || '';
         const passingScore = query.get('passingScore') || '';
         const gradeLevel = query.get('gradeLevel') || ''; // Handle grade level input
+        const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
 
         let grades = [];
         if (gradeLevel === 'primary') {
@@ -136,44 +137,45 @@ const QuizForm = () => {
     };
 
     // Create a new quiz
-    const createQuiz = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('http://localhost:3000/api/quizzes', {
-                title: formData.title,
-                description: formData.description,
-                time_limit: formData.timeLimit,
-                passing_score: formData.passingScore,
-                grades: formData.grade
-            });
-            setQuizId(response.data._id);
-            alert('Quiz created successfully!');
-            setSubmitted(true);
-        } catch (error) {
-            alert('Failed to create quiz');
-        }
-    };
-    
-    // Add questions to the created quiz
-    const addQuestionsToQuiz = async (e) => {
-        e.preventDefault();
-        try {
-            console.log('Adding questions to quiz:', formData.questions); // Log questions data for debugging
-            await axios.post(`http://localhost:3000/api/quizzes/${quizId}/questions`, {
-                questions: formData.questions.map(q => ({
-                    question_text: q.question_text,
-                    answer_options: q.answer_options,
-                    correct_answer: q.correct_answer,
-                }))
-            });
-            alert('Questions added successfully!');
-            clearForm(); // Clear form after successful submission
-            navigate(`/quizzes/${quizId}`); // Redirect to the quiz details page
-        } catch (error) {
-            console.error('Add Questions Error:', error.response ? error.response.data : error.message); // Log detailed error
-            alert('Failed to add questions to quiz');
-        }
-    };
+   const createQuiz = async (e) => {
+    e.preventDefault();
+    try {
+        const response = await axios.post(`${BASE_URL}/quizzes`, {
+            title: formData.title,
+            description: formData.description,
+            time_limit: formData.timeLimit,
+            passing_score: formData.passingScore,
+            grades: formData.grade
+        });
+        setQuizId(response.data._id);
+        alert('Quiz created successfully!');
+        setSubmitted(true);
+    } catch (error) {
+        alert('Failed to create quiz');
+    }
+};
+
+// Add questions to the created quiz
+const addQuestionsToQuiz = async (e) => {
+    e.preventDefault();
+    try {
+        console.log('Adding questions to quiz:', formData.questions); // Log questions data for debugging
+        await axios.post(`${BASE_URL}/quizzes/${quizId}/questions`, {
+            questions: formData.questions.map(q => ({
+                question_text: q.question_text,
+                answer_options: q.answer_options,
+                correct_answer: q.correct_answer,
+            }))
+        });
+        alert('Questions added successfully!');
+        clearForm(); // Clear form after successful submission
+        navigate(`/quizzes/${quizId}`); // Redirect to the quiz details page
+    } catch (error) {
+        console.error('Add Questions Error:', error.response ? error.response.data : error.message); // Log detailed error
+        alert('Failed to add questions to quiz');
+    }
+};
+
 
     return ( 
         <ProtectedTeacherRoute>
