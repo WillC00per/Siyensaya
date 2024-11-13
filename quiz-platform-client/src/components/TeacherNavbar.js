@@ -12,7 +12,7 @@ const TeacherNavbar = () => {
             try {
                 const token = localStorage.getItem('token');
                 if (token) {
-                    const response = await axios.get('http://localhost:3000/user', {
+                    const response = await axios.get('https://siyensaya.onrender.com/user', {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
