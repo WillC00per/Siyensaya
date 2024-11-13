@@ -92,46 +92,47 @@ const QuizPage = () => {
     }, [questions, questionTimeLimit, quizCompleted, currentQuestionIndex]);
 
     const handleAnswerSelect = (answer) => {
-    const currentQuestion = questions[currentQuestionIndex];
-    setSelectedAnswers((prevState) => ({
-        ...prevState,
-        [currentQuestion.id]: answer, // Store the selected answer for the current question
-    }));
+        const currentQuestion = questions[currentQuestionIndex];
+        setSelectedAnswers((prevState) => ({
+            ...prevState,
+            [currentQuestion.id]: answer, // Store the selected answer for the current question
+        }));
 
-    if (answer === currentQuestion.correct_answer) {
-        setScore((prevScore) => prevScore + 1); // Update the score
-        setComboCounter((prevCombo) => prevCombo + 1);
-        setFeedbackMessage('Correct!');
-        speak('Correct!');
-        triggerConfetti();
+        if (answer === currentQuestion.correct_answer) {
+            setScore((prevScore) => prevScore + 1); // Update the score
+            setComboCounter((prevCombo) => prevCombo + 1);
+            setFeedbackMessage('Correct!');
+            speak('Correct!');
+            triggerConfetti();
 
-        if ((comboCounter + 1) % 3 === 0) {
-            setLevelUpVisible(true);
-            setTimeout(() => setLevelUpVisible(false), 3000);
-        }
-    } else {
-        setComboCounter(0);
-        const correctAnswerMessage = `Wrong! The correct answer is ${currentQuestion.correct_answer}.`;
-        setFeedbackMessage(correctAnswerMessage);
-        speak(correctAnswerMessage);
-    }
-
-    setTimeout(() => {
-        setFeedbackMessage(''); // Clear feedback between questions
-        setTimeLeft(questionTimeLimit); // Reset timer for the next question
-
-        setCurrentQuestionIndex((prevIndex) => {
-            const nextIndex = prevIndex + 1;
-            if (nextIndex < questions.length) {
-                return nextIndex; // Move to the next question
-            } else {
-                setQuizCompleted(true);
-                handleFinishQuiz();
-                return prevIndex; // No more questions; keep the index the same
+            if ((comboCounter + 1) % 3 === 0) {
+                setLevelUpVisible(true);
+                setTimeout(() => setLevelUpVisible(false), 3000);
             }
-        });
-    }, 2000);
-};
+        } else {
+            setComboCounter(0);
+            const correctAnswerMessage = `Wrong! The correct answer is ${currentQuestion.correct_answer}.`;
+            setFeedbackMessage(correctAnswerMessage);
+            speak(correctAnswerMessage);
+        }
+
+        // Move to the next question after showing feedback
+        setTimeout(() => {
+            setFeedbackMessage(''); // Clear feedback between questions
+            setTimeLeft(questionTimeLimit); // Reset timer for the next question
+
+            setCurrentQuestionIndex((prevIndex) => {
+                const nextIndex = prevIndex + 1;
+                if (nextIndex < questions.length) {
+                    return nextIndex; // Move to the next question
+                } else {
+                    setQuizCompleted(true);
+                    handleFinishQuiz();
+                    return prevIndex; // No more questions; keep the index the same
+                }
+            });
+        }, 2000);
+    };
 
     const handleTimeOut = () => {
         const currentQuestion = questions[currentQuestionIndex];
@@ -180,24 +181,18 @@ const QuizPage = () => {
         setQuizCompleted(true); 
 
         try {
-            const studentId = localStorage.getItem('studentId'); // Get studentId from localStorage
+            const studentId = localStorage.getItem('studentId');
             const endTime = new Date();
-            const timeTaken = Math.round((endTime - startTime) / 1000); // Time taken in seconds
-            const passed = score >= (questions.length / 2); // Example passing criteria
+            const timeTaken = Math.round((endTime - startTime) / 1000);
+            const passed = score >= (questions.length / 2);
 
-            // Set result message and visibility based on the result
             setIsPass(passed);
             setResultMessage(passed ? "Congratulations! You have passed!" : "Sorry, you have failed.");
             setResultPopupVisible(true);
-            
-            // Voice announcement for the results
-            speak(passed ? "Congratulations! You have passed the quiz!" : "Sorry, you have failed the quiz."); // Voice announcement
+            speak(passed ? "Congratulations! You have passed the quiz!" : "Sorry, you have failed the quiz.");
 
-            // Get answers for each question
-            const answers = questions.map((question) => selectedAnswers[question.id] || ''); // Get answers for each question
-            const feedback = "Great quiz!"; // Example feedback
-
-            // Calculate percentage score
+            const answers = questions.map((question) => selectedAnswers[question.id] || '');
+            const feedback = "Great quiz!";
             const percentageScore = (score / questions.length) * 100;
 
             await axios.post(`${BASE_URL}/quizzes/${quizId}/submit`, {
@@ -207,10 +202,8 @@ const QuizPage = () => {
                 feedback: feedback,
                 attempt: 1,
                 passed: passed,
-                percentage_score: percentageScore, // Include the percentage score
+                percentage_score: percentageScore,
             });
-
-            // No automatic redirect here; just show the result popup
         } catch (error) {
             console.error('Error submitting quiz:', error);
         }
@@ -231,28 +224,28 @@ const QuizPage = () => {
                         <h1 className="quiz-title">{questions[currentQuestionIndex]?.question_text}</h1>
                     </div>
                     <div className="quiz-answer-options">
-    {questions[currentQuestionIndex]?.answer_options.map((option, index) => (
-        <button
-            key={index}
-            className={`quiz-answer-button quiz-btn m-2 ${selectedAnswers[questions[currentQuestionIndex].id] === option ? 'selected' : ''}`}
-            onClick={() => handleAnswerSelect(option)}
-            disabled={selectedAnswers[questions[currentQuestionIndex]?.id] !== undefined && currentQuestionIndex === questions.indexOf(questions[currentQuestionIndex])}
-        >
-            {option}
-        </button>
-    ))}
-</div>
-
-                    <div className="feedback-message">{feedbackMessage}</div>
-                    {levelUpVisible && <div className="level-up-message">Level Up!</div>}
+                        {questions[currentQuestionIndex]?.answer_options.map((option, index) => (
+                            <button
+                                key={index}
+                                className={`quiz-answer-button quiz-btn m-2 ${selectedAnswers[questions[currentQuestionIndex].id] === option ? 'selected' : ''}`}
+                                onClick={() => handleAnswerSelect(option)}
+                                disabled={!!selectedAnswers[questions[currentQuestionIndex].id]} // disable after an answer is selected
+                            >
+                                {option}
+                            </button>
+                        ))}
+                    </div>
+                    {feedbackMessage && <div className="feedback-message">{feedbackMessage}</div>}
                 </div>
             )}
+            <canvas ref={canvasRef} className="confetti-canvas"></canvas>
+            {levelUpVisible && <div className="level-up-banner">Level Up!</div>}
             {resultPopupVisible && (
                 <div className="result-popup">
-                    <p>{resultMessage}</p>
+                    <h2>{resultMessage}</h2>
+                    <button onClick={() => setResultPopupVisible(false)}>Close</button>
                 </div>
             )}
-            <canvas ref={canvasRef} className="confetti-canvas" style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}></canvas>
         </div>
     );
 };
