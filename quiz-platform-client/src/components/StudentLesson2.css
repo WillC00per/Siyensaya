@@ -4,17 +4,17 @@
     justify-content: flex-start;  /* Align content to the top */
     align-items: center;  /* Center content horizontally */
     padding-left: 300px;
-    background-image: url("https://i.imgur.com/BbASALP.gif");
+    background-image: url("https://i.imgur.com/zCQm77e.gif");
     background-size: cover;
-    background-position: center;
-    height: 100%;
-    min-height: 100vh;  /* Ensure it covers the full height */
+    background-position: center;    
+    
+    min-height: 100%;  /* Ensure it covers the full height */
 }
 
 .main-content {
     flex: 1;
     
-    background-color: rgba(196, 68, 225, 0.8);  /* Light overlay for readability */
+    background-color: rgba(68, 225, 97, 0.245);  /* Light overlay for readability */
     border-radius: 10px;
     width: 100%;  /* Ensure content stretches to the full width */
     max-width: 1200px;  /* Optional: limit the max width of the main content */
@@ -30,8 +30,8 @@
 
 .lesson-card {
     background-color: #f8f9fa;
-    width: 300px;
-    height: 250px;
+    width: auto !important; 
+    height: auto !important;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
