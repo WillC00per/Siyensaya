@@ -4,6 +4,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './QuizPage.css'; // Ensure you have this file for styling
 import confetti from 'canvas-confetti'; // Import confetti for celebrations
 
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
+
 const CircularProgressBar = ({ timeLeft, timeLimit }) => {
     const radius = 60; // Radius of the circle
     const strokeWidth = 8; // Width of the progress stroke
@@ -71,7 +73,7 @@ const QuizPage = () => {
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/quizzes/${quizId}/questions`);
+                const response = await axios.get(`${BASE_URL}/quizzes/${quizId}/questions`);
                 const data = response.data;
 
                 console.log('API Response:', data);
@@ -255,14 +257,14 @@ const QuizPage = () => {
             const answers = questions.map(() => selectedAnswer); // Placeholder, adjust if needed
             const feedback = "Great quiz!"; // Example feedback
 
-            await axios.post(`http://localhost:3000/api/quizzes/${quizId}/submit`, {
-                studentId: studentId,
-                answers: answers,
-                time_taken: timeTaken,
-                feedback: feedback,
-                attempt: 1,
-                passed: passed
-            });
+           await axios.post(`${BASE_URL}/quizzes/${quizId}/submit`, {
+    studentId: studentId,
+    answers: answers,
+    time_taken: timeTaken,
+    feedback: feedback,
+    attempt: 1,
+    passed: passed
+});
 
             // No automatic redirect here; just show the result popup
         } catch (error) {
