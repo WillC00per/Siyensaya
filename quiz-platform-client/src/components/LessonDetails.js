@@ -8,6 +8,8 @@ import Modal from 'react-bootstrap/Modal'; // Import Modal from react-bootstrap
 import Button from 'react-bootstrap/Button'; // Import Button from react-bootstrap
 import { FaFilePdf } from 'react-icons/fa'; // Import an icon for PDF files
 
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
+
 const LessonDetails = () => {
     const { lessonId } = useParams(); // Get the lessonId from the URL parameters
     const [lesson, setLesson] = useState(null);
@@ -19,7 +21,8 @@ const LessonDetails = () => {
         const fetchLesson = async () => {
             setLoading(true);
             try {
-                const response = await axios.get(`http://localhost:3000/api/lessons/${lessonId}`);
+                const response = await axios.get(`${BASE_URL}/lessons/${lessonId}`);
+
                 console.log(response.data); // Log the response data
                 setLesson(response.data);
                 setShowAchievement(true); // Show achievement popup if lesson is successfully fetched
@@ -88,10 +91,13 @@ const LessonDetails = () => {
         <div className="presentation-item" style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
             <FaFilePdf size={40} color="red" /> {/* PDF icon */}
             <a 
-                href={`http://localhost:3000/api/download/${lesson.presentation.split('/').pop()}`} 
-                download 
-                style={{ marginLeft: '10px', textDecoration: 'underline', color: 'blue' }}
-            >
+    href={`${BASE_URL}/download/${lesson.presentation.split('/').pop()}`} 
+    download 
+    style={{ marginLeft: '10px', textDecoration: 'underline', color: 'blue' }}
+>
+    Download
+</a>
+
                 {lesson.presentation.split('/').pop()} {/* Display filename */}
             </a>
         </div>
