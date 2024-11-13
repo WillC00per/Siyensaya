@@ -51,7 +51,7 @@ const QuizPage = () => {
     const [resultMessage, setResultMessage] = useState('');
     const [isPass, setIsPass] = useState(false);
     const canvasRef = useRef(null);
-    const [startTime, setStartTime] = useState(null);
+    const [startTime, setStartTime] = useState(new Date());
 
     useEffect(() => {
         const fetchQuestions = async () => {
@@ -93,16 +93,24 @@ const QuizPage = () => {
 
     const handleAnswerSelect = (answer) => {
         const currentQuestion = questions[currentQuestionIndex];
+        console.log(`Handling answer select for question: ${currentQuestion.question_text}`);
+        console.log(`Selected answer: ${answer}`);
+        console.log(`Correct answer: ${currentQuestion.correct_answer}`);
+    
         setSelectedAnswer(answer);
         clearTimeout(handleTimeOut); // Stop any previous timer
-
+    
         if (answer === currentQuestion.correct_answer) {
-            setScore(prevScore => prevScore + 1);  // Correctly updating the score
+            setScore(prevScore => {
+                const newScore = prevScore + 1;
+                console.log(`Correct answer selected. New score: ${newScore}`);
+                return newScore;
+            });
             setComboCounter(comboCounter + 1);
             setFeedbackMessage('Correct!');
             speak('Correct!');
             triggerConfetti();
-
+    
             if (comboCounter % 3 === 0) {
                 setLevelUpVisible(true);
                 setTimeout(() => setLevelUpVisible(false), 3000);
@@ -113,8 +121,9 @@ const QuizPage = () => {
             setFeedbackMessage(correctAnswerMessage);
             speak(correctAnswerMessage);
         }
-
+    
         setTimeout(() => {
+            console.log(`Moving to next question. Current index: ${currentQuestionIndex}`);
             if (currentQuestionIndex + 1 < questions.length) {
                 setCurrentQuestionIndex(currentQuestionIndex + 1);
                 setSelectedAnswer('');
@@ -125,14 +134,17 @@ const QuizPage = () => {
             }
         }, 2000);
     };
-
+    
     const handleTimeOut = () => {
         const currentQuestion = questions[currentQuestionIndex];
+        console.log(`Time's up for question: ${currentQuestion.question_text}`);
         setComboCounter(0);
         const correctAnswerMessage = `Time's up! The correct answer is ${currentQuestion.correct_answer}.`;
         setFeedbackMessage(correctAnswerMessage);
         speak(correctAnswerMessage);
+    
         setTimeout(() => {
+            console.log(`Moving to next question after timeout. Current index: ${currentQuestionIndex}`);
             if (currentQuestionIndex + 1 < questions.length) {
                 setCurrentQuestionIndex(currentQuestionIndex + 1);
                 setSelectedAnswer('');
@@ -143,14 +155,14 @@ const QuizPage = () => {
             }
         }, 2000);
     };
-
+    
     const speak = (message) => {
         const utterance = new SpeechSynthesisUtterance(message);
         utterance.onstart = () => setIsSpeaking(true);
         utterance.onend = () => setIsSpeaking(false);
         window.speechSynthesis.speak(utterance);
     };
-
+    
     const triggerConfetti = () => {
         const canvas = canvasRef.current;
         if (canvas) {
@@ -165,49 +177,47 @@ const QuizPage = () => {
             });
         }
     };
-
     const handleFinishQuiz = async () => {
-        // Stop any ongoing speech
         window.speechSynthesis.cancel();
-
-        // Set quiz as completed
-        setQuizCompleted(true); 
-
+        setQuizCompleted(true);
+    
         try {
-            const studentId = localStorage.getItem('studentId'); // Get studentId from localStorage
+            const studentId = localStorage.getItem('studentId');
             const endTime = new Date();
-            const timeTaken = Math.round((endTime - startTime) / 1000); // Time taken in seconds
-            const passed = score >= (questions.length / 2); // Example passing criteria
-
-            // Set result message and visibility based on the result
+            const timeTaken = Math.round((endTime - startTime) / 1000);
+            const passed = score >= (questions.length / 2);
+    
+            // Log the percentage score before sending it to the server
+            console.log(`Quiz finished. Score: ${score}. Passing score: ${questions.length / 2}`);
             setIsPass(passed);
             setResultMessage(passed ? "Congratulations! You have passed!" : "Sorry, you have failed.");
             setResultPopupVisible(true);
-            
-            // Voice announcement for the results
-            speak(passed ? "Congratulations! You have passed the quiz!" : "Sorry, you have failed the quiz."); // Voice announcement
-
-            const answers = questions.map(() => selectedAnswer); // Placeholder, adjust if needed
-            const feedback = "Great quiz!"; // Example feedback
-
-            // Calculate percentage score
+    
+            speak(passed ? "Congratulations! You have passed the quiz!" : "Sorry, you have failed the quiz.");
+    
+            // Prepare answers (you can modify as needed)
+            const answers = questions.map(() => selectedAnswer); // Collect answers
+            const feedback = "wtf!"; // You can modify feedback as needed
+    
+            // Calculate percentage score (Frontend will do this)
             const percentageScore = (score / questions.length) * 100;
-
+    
+            // Send to backend
             await axios.post(`${BASE_URL}/quizzes/${quizId}/submit`, {
                 studentId: studentId,
                 answers: answers,
                 time_taken: timeTaken,
                 feedback: feedback,
                 attempt: 1,
-                passed: passed,
-                percentage_score: percentageScore, // Include the percentage score
+                percentageScore: percentageScore,  // Send computed score
             });
-
-            // No automatic redirect here; just show the result popup
         } catch (error) {
             console.error('Error submitting quiz:', error);
         }
     };
+    
+
+    
 
     return (
         <div className="quiz-page">
@@ -241,15 +251,14 @@ const QuizPage = () => {
                         </div>
                     )}
                     {resultPopupVisible && (
-                        <div className="result-popup">
-                            <h2>{resultMessage}</h2>
-                            <p>{isPass ? "Great job! Keep up the good work." : "Don't give up! Try again."}</p>
-                            <button onClick={() => navigate('/quiz-results')}>View Results</button>
+                        <div className="quiz-result-popup">
+                            <h3>{resultMessage}</h3>
+                            <button className="quiz-btn btn btn-primary" onClick={() => navigate('/quiz-results')}>View Results</button>
                         </div>
                     )}
                 </div>
             )}
-            <canvas ref={canvasRef} className="confetti-canvas" />
+            <canvas ref={canvasRef} className="confetti-canvas"></canvas>
         </div>
     );
 };
