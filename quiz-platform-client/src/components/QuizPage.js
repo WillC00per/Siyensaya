@@ -8,7 +8,6 @@ const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
 
 const CircularProgressBar = ({ timeLeft, timeLimit }) => {
     const radius = 60;
-    
     const strokeWidth = 8;
     const normalizedRadius = radius - strokeWidth * 0.5;
     const circumference = normalizedRadius * 2 * Math.PI;
@@ -53,8 +52,6 @@ const QuizPage = () => {
     const [isPass, setIsPass] = useState(false);
     const canvasRef = useRef(null);
     const [startTime, setStartTime] = useState(null);
-
-    const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
 
     useEffect(() => {
         const fetchQuestions = async () => {
@@ -169,7 +166,7 @@ const QuizPage = () => {
         }
     };
 
-   const handleFinishQuiz = async () => {
+    const handleFinishQuiz = async () => {
         // Stop any ongoing speech
         window.speechSynthesis.cancel();
 
@@ -193,13 +190,17 @@ const QuizPage = () => {
             const answers = questions.map(() => selectedAnswer); // Placeholder, adjust if needed
             const feedback = "Great quiz!"; // Example feedback
 
+            // Calculate percentage score
+            const percentageScore = (score / questions.length) * 100;
+
             await axios.post(`${BASE_URL}/quizzes/${quizId}/submit`, {
                 studentId: studentId,
                 answers: answers,
                 time_taken: timeTaken,
                 feedback: feedback,
                 attempt: 1,
-                passed: passed
+                passed: passed,
+                percentage_score: percentageScore, // Include the percentage score
             });
 
             // No automatic redirect here; just show the result popup
@@ -213,7 +214,7 @@ const QuizPage = () => {
             {quizCompleted ? (
                 <div className="quiz-completed-screen">
                     <h1>Quiz Completed!</h1>
-                    <p className="quiz-score">Your Score: {score} / {questions.length}</p>
+                    <p className="quiz-score">Your Score: {score} / {questions.length} ({Math.round((score / questions.length) * 100)}%)</p>
                     <button className="quiz-btn btn btn-success" onClick={() => navigate('/quiz-results')}>Finish Quiz</button>
                 </div>
             ) : (
@@ -234,16 +235,21 @@ const QuizPage = () => {
                         ))}
                     </div>
                     <p className="quiz-feedback">{feedbackMessage}</p>
-                    {levelUpVisible && <div className="level-up animate__animated animate__fadeIn">Level Up!</div>}
+                    {levelUpVisible && (
+                        <div className="level-up-popup">
+                            <h3>Combo Level Up!</h3>
+                        </div>
+                    )}
+                    {resultPopupVisible && (
+                        <div className="result-popup">
+                            <h2>{resultMessage}</h2>
+                            <p>{isPass ? "Great job! Keep up the good work." : "Don't give up! Try again."}</p>
+                            <button onClick={() => navigate('/quiz-results')}>View Results</button>
+                        </div>
+                    )}
                 </div>
             )}
-            {resultPopupVisible && (
-                <div className={`result-popup ${isPass ? 'pass' : 'fail'}`}>
-                    <p>{resultMessage}</p>
-                    <button onClick={() => setResultPopupVisible(false)}>Close</button>
-                </div>
-            )}
-            <canvas ref={canvasRef} className="confetti-canvas" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} />
+            <canvas ref={canvasRef} className="confetti-canvas" />
         </div>
     );
 };
