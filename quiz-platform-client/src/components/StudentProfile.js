@@ -209,7 +209,7 @@ const StudentProfile = () => {
                     )}
 
                     {/* Avatar Modal */}
-                    <Modal show={showModal} onHide={handleCloseModal}>
+                    <Modal show={showModal} onHide={handleCloseModal} backdrop={false}>
                         <Modal.Header closeButton>
                             <Modal.Title>Select Your Cool Avatar! 🎨</Modal.Title>
                         </Modal.Header>
