@@ -161,11 +161,15 @@ const StudentProfile = () => {
                                 {/* Profile Header with Avatar */}
                                 <div className="d-flex align-items-center mb-4">
                                     <div className="profile-avatar-container">
-                                        <img 
-                                            src={profile.avatarUrl ? `${BASE_URL.replace('/api', '')}${profile.avatarUrl}` : '/default-avatar.png'} 
-                                            alt="Avatar" 
-                                            className="profile-avatar"
-                                        />
+                                       <img 
+    src={profile.avatarUrl 
+        ? `${process.env.REACT_APP_API_BASE_URL}${profile.avatarUrl}` 
+        : '/default-avatar.png'
+    } 
+    alt="Avatar" 
+    className="profile-avatar"
+/>
+
                                         <button className="change-avatar-btn" onClick={handleShowModal}>
                                             <i className="fas fa-pencil-alt"></i>
                                         </button>
