@@ -49,7 +49,7 @@ const Login = () => {
                 } else if (role === 'student') {
                     navigate('/student');
                 } else if (role === 'teacher') {
-                    navigate('/lessonform'); // Redirect to lesson form for teachers
+                    navigate('/teacherdashboard'); // Redirect to lesson form for teachers
                 }
             }
         } catch (error) {
