@@ -3,9 +3,10 @@
 .student-navbar {
     border-bottom-left-radius: 30px;
     box-shadow: 0 6px 6px -6px #222;
-    background-color: rgba(128, 0, 128, 0.7) !important; /* Purple background */
-    padding: 10px 5%; /* Adjusted padding for responsiveness */
-    margin-left: 200px;
+    background-color: rgba(106, 203, 130, 0.7) !important; /* Purple background */
+    padding: 10px; /* Adjusted padding for responsiveness */
+
+    margin-left: 300px;
     display: flex; /* Flex container for alignment */
     align-items: center;
     justify-content: space-between; /* Adjust items with space between them */
@@ -52,7 +53,7 @@
 /* Specific styling for the search button */
 .search-button {
     border-radius: 30px; /* Rounded button */
-    background-color: #d33434; /* Custom background color */
+    background-color: #eaed32; /* Custom background color */
     font-weight: 400;
     transition: background-color 0.3s; /* Smooth hover effect */
 }
