@@ -1,9 +1,10 @@
 /* Parent container wrapping all lesson elements */
 /* Parent container wrapping all lesson elements */
 .lesson-details-container {
-    background: url('https://i.imgur.com/rNNLWwa.png') no-repeat center center fixed;
-    background-size: cover; /* Ensure the background covers the container */
-    height: 100vh; /* Set height to fill the viewport */
+    background-image: url("https://i.imgur.com/zCQm77e.gif");
+    background-size: cover;
+    background-position: center;    
+    height: 100%; /* Set height to fill the viewport */
     min-height: 100vh; /* Maintain minimum height of the viewport */
     display: flex;
     justify-content: flex-start; /* Align items horizontally (sidebar on the left) */
@@ -27,7 +28,7 @@
 
 /* Main content box */
 .lesson-main-content {
-    background: url('https://i.imgur.com/OEojyz5.gif'); /* Background for content */
+    background: linear-gradient(135deg, rgba(27, 154, 103, 0.515), rgba(32, 32, 32, 0.8)); /* Background for content */
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 6px 50px rgba(0, 0, 0, 0.7); /* Strong shadow */
@@ -159,7 +160,7 @@
     height: auto;
     border-radius: 10px;
     max-width: 560px;
-    max-height: 315px;
+    height: fit-content;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
