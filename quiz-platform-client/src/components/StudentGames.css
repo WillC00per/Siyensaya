@@ -1,13 +1,15 @@
 /* General Layout */
 .Nav-bar-sg {
-    background-image: url("https://i.imgur.com/BbASALP.gif");
+    background-image: url("https://i.imgur.com/zCQm77e.gif");
+    background-size: cover;
+    background-position: center;    
 }
 
 .student-games {
     padding-left: 350px;
+    background-image: url("https://i.imgur.com/zCQm77e.gif");
     background-size: cover;
-    background-position: center;
-    background-image: url("https://i.imgur.com/BbASALP.gif");
+    background-position: center;    
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -17,11 +19,11 @@
 /* Main Container for Available Games */
 .games-container {
     padding: 1rem;
-    background: rgba(49, 27, 146, 0.8); /* Semi-transparent dark purple */
-    background: linear-gradient(135deg, rgba(106, 27, 154, 0.8), rgba(32, 32, 32, 0.8));
-    border: 1px solid #000000;
+    
+    background: linear-gradient(135deg, rgba(27, 154, 103, 0.515), rgba(32, 32, 32, 0.8));
+    border: 1px #00000036;
     border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 12px rgba(75, 159, 118, 0.1);
     margin-top: 2rem;
     display: flex;
     flex-wrap: wrap;
