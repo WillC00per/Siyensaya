@@ -17,14 +17,7 @@ const LessonForm = () => {
     const [grade, setGrade] = useState('');
     const navigate = useNavigate();
 
-    // Check if the logged-in user is a teacher
-    useEffect(() => {
-        const role = localStorage.getItem('role');
-        if (role !== 'teacher') {
-            alert('You do not have permission to access this page.');
-            navigate('/'); // Redirect to home or another appropriate page
-        }
-    }, [navigate]);
+    
 
     // Fetch lesson details if editing
     useEffect(() => {
