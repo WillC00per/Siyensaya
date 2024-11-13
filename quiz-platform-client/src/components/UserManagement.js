@@ -20,28 +20,7 @@ const UserManagement = () => {
     const [isBulkDelete, setIsBulkDelete] = useState(false);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const checkUserRole = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                if (!token) {
-                    navigate('/');
-                    return;
-                }
-                const response = await axios.get(`${BASE_URL}/users`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                if (response.data.role !== 'admin') {
-                    navigate('/');
-                }
-            } catch (error) {
-                navigate('/');
-            }
-        };
-        checkUserRole();
-    }, [navigate]);
+    
 
     useEffect(() => {
         const fetchUsers = async () => {
