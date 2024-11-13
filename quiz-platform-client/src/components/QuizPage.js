@@ -38,7 +38,7 @@ const QuizPage = () => {
     const navigate = useNavigate();
     const [questions, setQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [selectedAnswer, setSelectedAnswer] = useState('');
+    const [selectedAnswers, setSelectedAnswers] = useState({});
     const [score, setScore] = useState(0);
     const [quizCompleted, setQuizCompleted] = useState(false);
     const [timeLeft, setTimeLeft] = useState(30);
@@ -93,7 +93,10 @@ const QuizPage = () => {
 
     const handleAnswerSelect = (answer) => {
         const currentQuestion = questions[currentQuestionIndex];
-        setSelectedAnswer(answer);
+        setSelectedAnswers(prevState => ({
+            ...prevState,
+            [currentQuestion.id]: answer, // Store the selected answer for the current question
+        }));
         clearTimeout(handleTimeOut); // Stop any previous timer
 
         if (answer === currentQuestion.correct_answer) {
@@ -117,7 +120,6 @@ const QuizPage = () => {
         setTimeout(() => {
             if (currentQuestionIndex + 1 < questions.length) {
                 setCurrentQuestionIndex(currentQuestionIndex + 1);
-                setSelectedAnswer('');
                 setTimeLeft(questionTimeLimit);
             } else {
                 setQuizCompleted(true);
@@ -135,7 +137,6 @@ const QuizPage = () => {
         setTimeout(() => {
             if (currentQuestionIndex + 1 < questions.length) {
                 setCurrentQuestionIndex(currentQuestionIndex + 1);
-                setSelectedAnswer('');
                 setTimeLeft(questionTimeLimit);
             } else {
                 setQuizCompleted(true);
@@ -187,7 +188,8 @@ const QuizPage = () => {
             // Voice announcement for the results
             speak(passed ? "Congratulations! You have passed the quiz!" : "Sorry, you have failed the quiz."); // Voice announcement
 
-            const answers = questions.map(() => selectedAnswer); // Placeholder, adjust if needed
+            // Get answers for each question
+            const answers = questions.map((question) => selectedAnswers[question.id] || ''); // Get answers for each question
             const feedback = "Great quiz!"; // Example feedback
 
             // Calculate percentage score
@@ -227,29 +229,24 @@ const QuizPage = () => {
                         {questions[currentQuestionIndex]?.answer_options.map((option, index) => (
                             <button
                                 key={index}
-                                className={`quiz-answer-button quiz-btn m-2 ${selectedAnswer === option ? 'selected' : 'btn-secondary'}`}
+                                className={`quiz-answer-button quiz-btn m-2 ${selectedAnswers[questions[currentQuestionIndex].id] === option ? 'selected' : ''}`}
                                 onClick={() => handleAnswerSelect(option)}
+                                disabled={selectedAnswers[questions[currentQuestionIndex].id] !== undefined}
                             >
                                 {option}
                             </button>
                         ))}
                     </div>
-                    <p className="quiz-feedback">{feedbackMessage}</p>
-                    {levelUpVisible && (
-                        <div className="level-up-popup">
-                            <h3>Combo Level Up!</h3>
-                        </div>
-                    )}
-                    {resultPopupVisible && (
-                        <div className="result-popup">
-                            <h2>{resultMessage}</h2>
-                            <p>{isPass ? "Great job! Keep up the good work." : "Don't give up! Try again."}</p>
-                            <button onClick={() => navigate('/quiz-results')}>View Results</button>
-                        </div>
-                    )}
+                    <div className="feedback-message">{feedbackMessage}</div>
+                    {levelUpVisible && <div className="level-up-message">Level Up!</div>}
                 </div>
             )}
-            <canvas ref={canvasRef} className="confetti-canvas" />
+            {resultPopupVisible && (
+                <div className="result-popup">
+                    <p>{resultMessage}</p>
+                </div>
+            )}
+            <canvas ref={canvasRef} className="confetti-canvas" style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}></canvas>
         </div>
     );
 };
