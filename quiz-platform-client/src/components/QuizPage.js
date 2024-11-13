@@ -169,25 +169,40 @@ const QuizPage = () => {
         }
     };
 
-    const handleFinishQuiz = async () => {
+   const handleFinishQuiz = async () => {
+        // Stop any ongoing speech
         window.speechSynthesis.cancel();
-        setQuizCompleted(true);
-        const studentId = localStorage.getItem('studentId');
-        const passed = score >= questions.length / 2;
-        setIsPass(passed);
-        setResultMessage(passed ? "Congratulations! You have passed!" : "Sorry, you have failed.");
-        setResultPopupVisible(true);
-        speak(passed ? "Congratulations! You have passed the quiz!" : "Sorry, you have failed the quiz.");
-        const answers = questions.map(() => selectedAnswer);
+
+        // Set quiz as completed
+        setQuizCompleted(true); 
+
         try {
+            const studentId = localStorage.getItem('studentId'); // Get studentId from localStorage
+            const endTime = new Date();
+            const timeTaken = Math.round((endTime - startTime) / 1000); // Time taken in seconds
+            const passed = score >= (questions.length / 2); // Example passing criteria
+
+            // Set result message and visibility based on the result
+            setIsPass(passed);
+            setResultMessage(passed ? "Congratulations! You have passed!" : "Sorry, you have failed.");
+            setResultPopupVisible(true);
+            
+            // Voice announcement for the results
+            speak(passed ? "Congratulations! You have passed the quiz!" : "Sorry, you have failed the quiz."); // Voice announcement
+
+            const answers = questions.map(() => selectedAnswer); // Placeholder, adjust if needed
+            const feedback = "Great quiz!"; // Example feedback
+
             await axios.post(`${BASE_URL}/quizzes/${quizId}/submit`, {
-                studentId,
-                answers,
-                time_taken: new Date() - startTime,
-                feedback: "Great quiz!",
+                studentId: studentId,
+                answers: answers,
+                time_taken: timeTaken,
+                feedback: feedback,
                 attempt: 1,
-                passed,
+                passed: passed
             });
+
+            // No automatic redirect here; just show the result popup
         } catch (error) {
             console.error('Error submitting quiz:', error);
         }
