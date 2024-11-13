@@ -8,6 +8,8 @@ import NavigationBar from './StudentNavbar'; // Importing NavigationBar
 import StudentSidebar from './StudentSidebar'; // Importing StudentSidebar
 import './StudentProfile.css'; // Create a custom CSS file for gamified look
 
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
+
 const StudentProfile = () => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -22,7 +24,7 @@ const StudentProfile = () => {
 
         const fetchProfile = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/profile/${studentId}`);
+                const response = await axios.get(`${BASE_URL}/profile/${studentId}`);
                 setProfile(response.data);
                 setLoading(false);
             } catch (error) {
@@ -45,7 +47,7 @@ const StudentProfile = () => {
     const fetchAvatars = async () => {
         setLoadingAvatars(true); // Start loading avatars
         try {
-            const response = await axios.get('http://localhost:3000/api/avatars');
+            const response = await axios.get(`${BASE_URL}/avatars`);
             setAvatars(response.data);
         } catch (error) {
             console.error('Error fetching avatars:', error);
@@ -70,9 +72,10 @@ const StudentProfile = () => {
     const handleAvatarSelect = async (avatar) => {
         const studentId = localStorage.getItem('studentId');
         try {
-            const response = await axios.post(`http://localhost:3000/api/upload-avatar/${studentId}`, {
-                avatarUrl: avatar
-            });
+            const response = await axios.post(`${BASE_URL}/upload-avatar/${studentId}`, {
+    avatarUrl: avatar
+});
+
             setProfile({ ...profile, avatarUrl: response.data.avatarUrl });
             setSelectedAvatar(avatar);
             setShowModal(false);
@@ -119,7 +122,7 @@ const StudentProfile = () => {
                         <>
                             <a href="#">
                                 <img 
-                                    src={`http://localhost:3000${item.imageUrl}`} 
+                                    src={`${BASE_URL.replace('/api', '')}${item.imageUrl}`}
                                     alt={item.badgeName} 
                                     className="badge-image"
                                 />
@@ -159,7 +162,7 @@ const StudentProfile = () => {
                                 <div className="d-flex align-items-center mb-4">
                                     <div className="profile-avatar-container">
                                         <img 
-                                            src={profile.avatarUrl ? `http://localhost:3000${profile.avatarUrl}` : '/default-avatar.png'} 
+                                            src={profile.avatarUrl ? `${BASE_URL.replace('/api', '')}${profile.avatarUrl}` : '/default-avatar.png'} 
                                             alt="Avatar" 
                                             className="profile-avatar"
                                         />
@@ -220,7 +223,7 @@ const StudentProfile = () => {
                                         onClick={() => handleAvatarSelect(avatar)}
                                     >
                                         <img
-                                            src={`http://localhost:3000/uploads/avatars/${avatar}`}
+                                            src={`${BASE_URL.replace('/api', '')}/uploads/avatars/${avatar}`}
                                             alt={`Avatar ${index}`}
                                             className="avatar-image"
                                         />
