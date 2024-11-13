@@ -99,36 +99,39 @@ const QuizPage = () => {
     }, [questions, questionTimeLimit, quizCompleted, currentQuestionIndex]);
 
     const handleAnswerSelect = (answer) => {
-        const currentQuestion = questions[currentQuestionIndex];
-        setSelectedAnswer(answer);
-        clearTimeout(handleTimeOut); // Stop any previous timer
-        if (answer === currentQuestion.correct_answer) {
-            setScore(score + 1);
-            setComboCounter(comboCounter + 1);
-            setFeedbackMessage('Correct!');
-            speak('Correct!');
-            triggerConfetti();
-            if (comboCounter % 3 === 0) {
-                setLevelUpVisible(true);
-                setTimeout(() => setLevelUpVisible(false), 3000);
-            }
-        } else {
-            setComboCounter(0);
-            const correctAnswerMessage = `Wrong! The correct answer is ${currentQuestion.correct_answer}.`;
-            setFeedbackMessage(correctAnswerMessage);
-            speak(correctAnswerMessage);
+    const currentQuestion = questions[currentQuestionIndex];
+    setSelectedAnswer(answer);
+    clearTimeout(handleTimeOut); // Stop any previous timer
+
+    if (answer === currentQuestion.correct_answer) {
+        setScore(prevScore => prevScore + 1);  // Correctly updating the score
+        setComboCounter(comboCounter + 1);
+        setFeedbackMessage('Correct!');
+        speak('Correct!');
+        triggerConfetti();
+
+        if (comboCounter % 3 === 0) {
+            setLevelUpVisible(true);
+            setTimeout(() => setLevelUpVisible(false), 3000);
         }
-        setTimeout(() => {
-            if (currentQuestionIndex + 1 < questions.length) {
-                setCurrentQuestionIndex(currentQuestionIndex + 1);
-                setSelectedAnswer('');
-                setTimeLeft(questionTimeLimit);
-            } else {
-                setQuizCompleted(true);
-                handleFinishQuiz();
-            }
-        }, 2000);
-    };
+    } else {
+        setComboCounter(0);
+        const correctAnswerMessage = `Wrong! The correct answer is ${currentQuestion.correct_answer}.`;
+        setFeedbackMessage(correctAnswerMessage);
+        speak(correctAnswerMessage);
+    }
+
+    setTimeout(() => {
+        if (currentQuestionIndex + 1 < questions.length) {
+            setCurrentQuestionIndex(currentQuestionIndex + 1);
+            setSelectedAnswer('');
+            setTimeLeft(questionTimeLimit);
+        } else {
+            setQuizCompleted(true);
+            handleFinishQuiz();
+        }
+    }, 2000);
+};
 
     const handleTimeOut = () => {
         const currentQuestion = questions[currentQuestionIndex];
