@@ -5,7 +5,7 @@ import './StudentSidebar.css'; // Import custom CSS for the student sidebar
 import { FaTrophy, FaBookOpen, FaUser, FaSignOutAlt, FaAngleLeft, FaAngleRight, FaPlayCircle } from 'react-icons/fa'; // Updated icons
 
 const StudentSidebar = () => {
-    const [isCollapsed, setIsCollapsed] = useState(false); // State to manage sidebar collapse
+    const [isCollapsed, setIsCollapsed] = useState(true); // Set initial state to true for default collapse
 
     // Function to toggle sidebar collapse state
     const toggleSidebar = () => {
@@ -37,7 +37,7 @@ const StudentSidebar = () => {
     // Effect to handle initial sidebar state based on screen size
     useEffect(() => {
         const handleResize = () => {
-            const isMobileOrTablet = window.matchMedia("(max-width: 768px)").matches; // Adjust this value based on your design
+            const isMobileOrTablet = window.matchMedia("(max-width: 768px)").matches;
             setIsCollapsed(isMobileOrTablet); // Collapse sidebar on mobile/tablet
         };
 
@@ -54,7 +54,7 @@ const StudentSidebar = () => {
     return (
         <nav className={`student-sidebar sidebar ${isCollapsed ? 'collapsed' : ''}`}>
             <div className="logo">
-                <img src="https://i.imgur.com/em476ya.png" alt="Logo" />
+                <img src="https://i.imgur.com/YEHdgkb.png" alt="Logo" />
             </div>
             <ul className="nav flex-column">
                 <li className="nav-item">
@@ -77,7 +77,7 @@ const StudentSidebar = () => {
                 </li>
                 <li className="nav-item">
                     <Link className="nav-link" to="/student-game">
-                        <FaPlayCircle className="nav-icon" /> {/* Changed icon */}
+                        <FaPlayCircle className="nav-icon" />
                         {!isCollapsed && 'Games'}
                     </Link>
                 </li>
