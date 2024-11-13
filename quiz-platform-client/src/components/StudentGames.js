@@ -68,8 +68,8 @@ const StudentGames = () => {
             console.error('Error adding student to completedBy:', error);
         }
 
-        // Navigate to the GamePlayer component with the game URL as state
-       // navigate('/play-game', { state: { gameUrl: fullGameUrl } });
+        Navigate to the GamePlayer component with the game URL as state
+       navigate('/play-game', { state: { gameUrl: fullGameUrl } });
     };
     
     if (loading) {
