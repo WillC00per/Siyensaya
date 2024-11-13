@@ -157,7 +157,8 @@ const AdminDashboard = () => {
             style={{ width: '100px' }}
         >
                                                 <img 
-                                                    src={student.avatarUrl ? `${process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000'}${student.avatarUrl}` : '/default-avatar.png'}
+                                                   src={student.avatarUrl ? `${process.env.REACT_APP_API_BASE_URL}${student.avatarUrl}` : '/default-avatar.png'}
+
 
                                                     alt={student.fullName || 'Student Avatar'} 
                                                     className="admin-dashboard-component__student-avatar card-img-top rounded-circle mb-2" 
