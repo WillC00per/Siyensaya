@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './QuizzesPage.css'; // Import your custom CSS for styling
 import { FaPlayCircle } from 'react-icons/fa';
 
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
+
 const QuizzesPage = () => {
     const [quizzes, setQuizzes] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -18,7 +20,7 @@ const QuizzesPage = () => {
 
         const fetchQuizzes = async () => {
             try {
-                const quizzesResponse = await axios.get(`http://localhost:3000/api/quizzes/grade/${studentGrade}`);
+                const quizzesResponse = await axios.get(`${BASE_URL}/quizzes/grade/${studentGrade}`);
                 setQuizzes(quizzesResponse.data);
                 setLoading(false);
             } catch (error) {
