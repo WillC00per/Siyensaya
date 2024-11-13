@@ -231,17 +231,18 @@ const QuizPage = () => {
                         <h1 className="quiz-title">{questions[currentQuestionIndex]?.question_text}</h1>
                     </div>
                     <div className="quiz-answer-options">
-                        {questions[currentQuestionIndex]?.answer_options.map((option, index) => (
-                            <button
-                                key={index}
-                                className={`quiz-answer-button quiz-btn m-2 ${selectedAnswers[questions[currentQuestionIndex].id] === option ? 'selected' : ''}`}
-                                onClick={() => handleAnswerSelect(option)}
-                                disabled={selectedAnswers[questions[currentQuestionIndex].id] !== undefined}
-                            >
-                                {option}
-                            </button>
-                        ))}
-                    </div>
+    {questions[currentQuestionIndex]?.answer_options.map((option, index) => (
+        <button
+            key={index}
+            className={`quiz-answer-button quiz-btn m-2 ${selectedAnswers[questions[currentQuestionIndex].id] === option ? 'selected' : ''}`}
+            onClick={() => handleAnswerSelect(option)}
+            disabled={selectedAnswers[questions[currentQuestionIndex]?.id] !== undefined && currentQuestionIndex === questions.indexOf(questions[currentQuestionIndex])}
+        >
+            {option}
+        </button>
+    ))}
+</div>
+
                     <div className="feedback-message">{feedbackMessage}</div>
                     {levelUpVisible && <div className="level-up-message">Level Up!</div>}
                 </div>
