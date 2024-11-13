@@ -6,6 +6,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import './QuizForm.css'; // Ensure you have this file for styling
 import ProtectedTeacherRoute from './ProtectedTeacherRoute';
 
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
+
 const QuizForm = () => {
     const location = useLocation();
     const navigate = useNavigate();
