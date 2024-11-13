@@ -273,7 +273,7 @@ const handleEdit = (username) => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleCloseModal}>Cancel</Button>
-                    <Button variant="danger" onClick={handleConfirmDelete}>Delete</Button>
+                    <Button variant="danger" onClick={handleConfirmDelete}>Archive</Button>
                 </Modal.Footer>
             </Modal>
         </div>
