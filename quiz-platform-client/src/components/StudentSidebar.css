@@ -1,7 +1,7 @@
 .student-sidebar {
     width: 250px;
     background: rgba(49, 27, 146, 0.8); /* Semi-transparent dark purple */
-    background: linear-gradient(135deg, rgba(106, 27, 154, 0.8), rgba(32, 32, 32, 0.8)); /* Purple and black gradient */
+    background-color: rgba(106, 203, 130, 0.7) !important; /* Purple and black gradient */
     color: #fff;
     padding-top: 20px;
     border-radius: 10px;
@@ -25,7 +25,7 @@
     left: calc(100% - 40px); /* Adjust position */
     top: 50%; /* Center it vertically */
     transform: translateY(-50%); /* Adjust for perfect centering */
-    background-color: rgba(248, 196, 69, 0.8); /* Bright yellow background color */
+    background-color: rgba(69, 248, 81, 0.8); /* Bright yellow background color */
     border: none;
     border-radius: 50%;
     width: 40px; /* Button size */
@@ -68,7 +68,7 @@
     margin-top: 15px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    color: #ffe600; /* Bright yellow for link text */
+    color: #ecefe2; /* Bright yellow for link text */
     display: flex;
     align-items: center; /* Align icons and text */
     transition: background-color 0.3s ease; /* Smooth hover effect */
