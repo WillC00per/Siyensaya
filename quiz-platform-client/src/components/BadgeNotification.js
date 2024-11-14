@@ -4,7 +4,7 @@ import { io } from 'socket.io-client';
 const BadgeNotification = () => {
     useEffect(() => {
         // Establish a connection to the Socket.IO server
-        const socket = io('http://localhost:3000'); // Make sure the URL matches your server
+        const socket = io('https://siyensaya.onrender.com'); // Make sure the URL matches your server
 
         // Listen for the 'badgeAwarded' event
         socket.on('badgeAwarded', (data) => {
