@@ -115,7 +115,7 @@
         padding-left: 5px; /* Adjust padding when collapsed */
     }
 
-.submenu .nav-link:hover {
-    color: #007bff; /* Optional hover color */
-}
-
+    .submenu .nav-link:hover {
+        color: #007bff; /* Optional hover color */
+    }
+} /* Close the @media block */
