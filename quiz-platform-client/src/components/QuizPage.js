@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import './QuizPage.css';
+import './QuizPage.css';q
 import confetti from 'canvas-confetti';
 
 const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
@@ -225,7 +225,7 @@ const QuizPage = () => {
                 <div className="quiz-completed-screen">
                     <h1>Quiz Completed!</h1>
                     <p className="quiz-score">Your Score: {score} / {questions.length} ({Math.round((score / questions.length) * 100)}%)</p>
-                    <button className="quiz-btn btn btn-success" onClick={() => navigate('/quiz-results')}>Finish Quiz</button>
+                    <button className="quiz-btn btn btn-success" onClick={() => navigate('/quizzes')}>Finish Quiz</button>
                 </div>
             ) : (
                 <div className="quiz-content">
