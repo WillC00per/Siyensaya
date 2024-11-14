@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import './QuizPage.css';q
+import './QuizPage.css';
 import confetti from 'canvas-confetti';
 
 const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
