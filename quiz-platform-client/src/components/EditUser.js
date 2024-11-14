@@ -27,28 +27,9 @@ const EditUser = () => {
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const checkUserRole = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                if (!token) {
-                    navigate('/');
-                    return;
-                }
-                const response = await axios.get('https://siyensaya.onrender.com/user', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                if (response.data.role !== 'admin') {
-                    navigate('/');
-                }
-            } catch (error) {
-                navigate('/');
-            }
-        };
-        checkUserRole();
-    }, [navigate]);
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL};
+
+    
 
     useEffect(() => {
         const fetchUsernames = async () => {
