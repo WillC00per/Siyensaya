@@ -205,7 +205,7 @@ const handleEdit = (username) => {
                                                     </td>
                                                     <td>
                                                         <Button variant="primary" onClick={() => handleEdit(user.username)}>EDIT</Button>
-                                                        <Button variant="danger" className="ml-2" onClick={() => handleShowModal(user)}>REMOVE</Button>
+                                                        <Button variant="danger" className="ml-2" onClick={() => handleShowModal(user)}>Archive</Button>
                                                     </td>
                                                 </tr>
                                             ))}
