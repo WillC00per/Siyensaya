@@ -35,7 +35,7 @@ const EditUser = () => {
                     navigate('/');
                     return;
                 }
-                const response = await axios.get('http://localhost:3000/user', {
+                const response = await axios.get('https://siyensaya.onrender.com/user', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -53,7 +53,7 @@ const EditUser = () => {
     useEffect(() => {
         const fetchUsernames = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/usernames');
+                const response = await axios.get('https://siyensaya.onrender.com//usernames');
                 if (Array.isArray(response.data)) {
                     setUsernames(response.data);
                 } else {
@@ -70,7 +70,7 @@ const EditUser = () => {
         if (selectedUsername) {
             const fetchUserData = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:3000/users/${selectedUsername}`);
+                    const response = await axios.get(`https://siyensaya.onrender.com/users/${selectedUsername}`);
                     setUserData({
                         ...response.data,
                         confirmPassword: response.data.password // Pre-fill confirmPassword for validation
@@ -89,7 +89,7 @@ const EditUser = () => {
             return;
         }
         try {
-            await axios.put(`http://localhost:3000/users/${selectedUsername}`, userData);
+            await axios.put(`https://siyensaya.onrender.com/users/${selectedUsername}`, userData);
             setMessage('User updated successfully');
         } catch (error) {
             setMessage(`Error during update: ${error.response ? error.response.data : error.message}`);
