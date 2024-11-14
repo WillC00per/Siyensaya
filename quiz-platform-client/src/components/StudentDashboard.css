@@ -26,7 +26,7 @@
 
 /* Welcome Box Styles */
 .welcome-box {
-    background-color: rgba(36, 197, 47, 0.7);
+    background: #1313127c;
     background-size: cover;
     padding: 20px;
     border-radius: 12px;
@@ -54,7 +54,7 @@
 
 /* Main Badges Box */
 .badges-box {
-    background-color: rgba(36, 197, 47, 0.7);
+    background: #1313127c;
     padding: 15px;
     font-weight: bolder;
     border-radius: 12px;
@@ -118,7 +118,7 @@
 .quiz-progress-section.single-box {
      
     background-size: cover;
-    background-color: rgba(36, 197, 47, 0.7); /* Light green for a fun vibe */
+    background: #1313127c;
     padding: 15px;
     border-radius: 12px;
     font-weight: bolder;
