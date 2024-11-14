@@ -212,8 +212,8 @@ const addQuestionsToQuiz = async (e) => {
                 <label>Grade Level:</label>
                 <select name="gradeLevel" onChange={handleGradeLevelChange}>
                     <option value="">Select Grade Level</option>
-                    <option value="primary">Primary (Grades 1-3)</option>
-                    <option value="secondary">Secondary (Grades 4-6)</option>
+                    <option value="primary">(Grades 1-3)</option>
+                    <option value="secondary">(Grades 4-6)</option>
                 </select>
                 <button type="submit" className="quiz-create-button">Create Quiz</button>
             </form>
