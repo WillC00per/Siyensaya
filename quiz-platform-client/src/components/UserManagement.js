@@ -242,7 +242,7 @@ const handleEdit = (username) => {
                     </div>
                 </div>
             </div>
-            <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal show={showModal} onHide={handleCloseModal} backdrop={false}>
                 <Modal.Header closeButton>
                     <Modal.Title>Confirm Deletion</Modal.Title>
                 </Modal.Header>
