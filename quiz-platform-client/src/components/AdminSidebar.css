@@ -68,10 +68,9 @@
     color: #6c757d; /* Optional color for differentiation */
 }
 
-/* Media Query to collapse sidebar on mobile */
 @media (max-width: 768px) {
     .admin-sidebar {
-        width: 80px; /* Shrink sidebar width on mobile */
+        width: 80px; 
     }
 
     .admin-sidebar .logo {
