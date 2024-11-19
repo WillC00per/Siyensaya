@@ -44,7 +44,7 @@ const LessonDetails = () => {
         <>
             {/* Independent Navbar outside the lesson details container */}
             <div className="navbar-wrapper">
-                <NavigationBar /> {/* Include the Navbar */}
+               
             </div>
 
             <div className="lesson-details-container"> {/* Main lesson details container */}
