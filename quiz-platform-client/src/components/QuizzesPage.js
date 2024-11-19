@@ -55,7 +55,7 @@ const QuizzesPage = () => {
 
     return (
         <div>
-            <NavigationBar />
+            
             <div className="d-flex">
                 <StudentSidebar />
                 <div className="quizzes-page qp-main-content"> {/* Moved quizzes-page class here */}
