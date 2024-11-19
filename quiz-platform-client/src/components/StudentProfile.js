@@ -146,7 +146,7 @@ const StudentProfile = () => {
 
     return (
         <div className="profile-container">
-            <NavigationBar /> {/* Include the Navbar */}
+           
             <div className="d-flex">
                 <StudentSidebar /> {/* Include the Sidebar */}
                 <div className="student-profile-maincontent"> {/* Updated class name */}
