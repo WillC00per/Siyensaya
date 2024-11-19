@@ -58,7 +58,7 @@ const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
 
     return (
         <div className="student-lessons-container d-flex flex-column vh-100">
-            <NavigationBar />
+            
             <div className="d-flex flex-grow-1">
                 <StudentSidebar />
                 <div className="main-content flex-grow-1 d-flex flex-column align-items-center justify-content-center">
