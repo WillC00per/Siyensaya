@@ -134,7 +134,7 @@ const StudentDashboard = () => {
 
     return (
         <div className="dashboard-container">
-            <NavigationBar />
+            
             <div className="d-flex flex-column flex-md-row">
                 <StudentSidebar />
                 <div className="student-dashboard-main-content flex-grow-1">
