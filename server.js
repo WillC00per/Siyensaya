@@ -105,38 +105,47 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
   // Register route
 app.post('/register', async (req, res) => {
   try {
-    const students = req.body.students; // Expecting an array of student objects
+    // Log the request body for debugging
+    console.log('Request body:', req.body);
 
-    // Check if students array is valid
-    if (!Array.isArray(students) || students.length === 0) {
-      console.log('No students provided or invalid format');
-      return res.status(400).send('No students provided or invalid format');
+    let students = req.body.students;
+
+    // If the request body contains a single student, wrap it in an array
+    if (!Array.isArray(students)) {
+      console.log('Wrapping single student in an array');
+      students = [req.body];
     }
 
-    // Array to hold promises for user creation
+    // Validate the students array
+    if (!Array.isArray(students) || students.length === 0) {
+      console.log('No students provided or invalid format');
+      return res.status(400).send('Error: No students provided or invalid format');
+    }
+
+    // Process each student in the array
     const userPromises = students.map(async (studentData) => {
       const {
-        username, password, role, studentNumber, email, firstName, middleName, lastName, birthday, address, contactNumber, grade, employeeNumber, gameProgress
+        username, password, role, studentNumber, email, firstName, middleName, lastName, birthday, address, contactNumber, grade, employeeNumber, gameProgress,
       } = studentData;
 
       console.log('Registering user with data:', studentData);
 
       // Check for missing required fields
       if (!username || !password || !role || !email || !firstName || !lastName || !birthday || !address || !contactNumber ||
-          (role === 'student' && (!studentNumber || !grade)) || 
-          ((role === 'teacher' || role === 'admin') && !employeeNumber)) {
+        (role === 'student' && (!studentNumber || !grade)) ||
+        ((role === 'teacher' || role === 'admin') && !employeeNumber)) {
         console.log('Missing required fields for:', username);
         throw new Error('Missing required fields for ' + username);
       }
 
-      // Check if user already exists (username or email)
+      // Check if the user already exists (username or email)
       const existingUser = await User.findOne({ $or: [{ username }, { email }] });
       if (existingUser) {
         console.log('Username or email already exists:', existingUser);
         throw new Error('Username or email already exists for ' + username);
       }
 
-      // Check if student number already exists for students
+      // Check if the student number already exists (for students only)
       if (role === 'student') {
         const existingStudent = await Student.findOne({ studentNumber });
         if (existingStudent) {
@@ -171,21 +180,20 @@ app.post('/register', async (req, res) => {
       // If the user is a student, create the student document
       if (role === 'student') {
         console.log('Creating student record');
-        
-        // Ensure gameProgress is correctly formatted as an object
-        const formattedGameProgress = gameProgress && typeof gameProgress === 'object' 
-          ? gameProgress 
-          : {}; 
 
-        // Create the student document using the new schema
+        // Ensure gameProgress is correctly formatted as an object
+        const formattedGameProgress = gameProgress && typeof gameProgress === 'object'
+          ? gameProgress
+          : {};
+
         const student = new Student({
           studentNumber,
           user: newUser._id,
           grade,
-          quizScores: [],  // Initialize empty quiz scores
-          badges: [],  // Initialize empty badges
-          lessonsProgress: [],  // Initialize empty lesson progress
-          gameProgress: formattedGameProgress // Handle game progress
+          quizScores: [], // Initialize empty quiz scores
+          badges: [], // Initialize empty badges
+          lessonsProgress: [], // Initialize empty lesson progress
+          gameProgress: formattedGameProgress, // Handle game progress
         });
 
         try {
@@ -198,7 +206,7 @@ app.post('/register', async (req, res) => {
           await newUser.save();
           console.log('Student linked to user successfully');
         } catch (studentSaveError) {
-          console.error('Error details during student save:', studentSaveError);
+          console.error('Error during student save:', studentSaveError);
           throw new Error('Error saving student record for ' + username);
         }
       }
@@ -208,7 +216,7 @@ app.post('/register', async (req, res) => {
 
     // Execute all user creation promises
     await Promise.all(userPromises);
-    
+
     // If all steps are successful, send a success response
     res.status(201).send('All users registered successfully');
   } catch (error) {
@@ -216,6 +224,7 @@ app.post('/register', async (req, res) => {
     return res.status(400).send('Error: ' + error.message);
   }
 });
+
 
 
   // Login route
