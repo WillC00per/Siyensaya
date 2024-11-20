@@ -127,7 +127,7 @@ const handleEdit = (username) => {
         <div className="user-management-page d-flex">
             <Sidebar />
             <div className="flex-grow-1">
-                <AdminNavbar />
+                
                 <div className="container mt-4">
                     <div className="row justify-content-center">
                         <div className="col-lg-10">
