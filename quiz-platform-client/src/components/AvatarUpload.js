@@ -64,7 +64,7 @@ const AvatarUpload = () => {
       <Sidebar />
       <div className="flex-grow-1 d-flex flex-column"> {/* Flex-grow for the main content */}
         <div className="container-fluid flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-          <AdminNavbar />
+         
           <h2 className="upload-header mb-4">Upload Avatar</h2>
           <p className="mb-4 text-muted">Upload guideline approved avatars that the students will use.</p> {/* Instruction message */}
           
