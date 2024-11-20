@@ -141,7 +141,10 @@ const handleEdit = (username) => {
                                     )}
                                     <div className="d-flex justify-content-between mb-3">
                                         <div className="action-buttons">
-                                            <Button variant="success" className="mr-2" onClick={handleCreate}>Create New Account</Button>
+                                            <Button variant="success" className="mr-2 custom-button" onClick={handleCreate}>
+  Create New Account
+</Button>
+
                                             {selectedUsers.length > 0 && (
                                                 <Button variant="danger" className="ml-2" onClick={handleBulkRemove}>Delete Selected</Button>
                                             )}
