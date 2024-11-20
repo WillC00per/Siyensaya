@@ -110,7 +110,7 @@ const TeacherLessons = () => {
 
     return (
         <div className="container-fluid" style={{ paddingLeft: '500px', paddingTop: '110px' }}>
-        <TeacherNavbar />
+        
          <div className="row">
          <TeacherSidebar />
         <div className="teacher-lessons-container">
