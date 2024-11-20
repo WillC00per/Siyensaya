@@ -205,7 +205,15 @@ const handleEdit = (username) => {
                                                     </td>
                                                     <td>
                                                         <Button variant="primary" onClick={() => handleEdit(user.username)}>EDIT</Button>
-                                                        <Button variant="primary" className="ml-2" onClick={() => handleShowModal(user)}>Archive</Button>
+                                                      <Button
+    variant="primary"
+    className="ml-2"
+    style={{ borderRadius: '15px' }}
+    onClick={() => handleShowModal(user)}
+>
+    Archive
+</Button>
+
 
                                                     </td>
                                                 </tr>
