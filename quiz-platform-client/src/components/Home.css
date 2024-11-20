@@ -1,9 +1,4 @@
-body {
-    background-color: #E5DED3;
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-}
+
 
 .navbar-custom {
     background-color: #d4a4eb;
@@ -213,5 +208,13 @@ body {
         transform: translateY(-20px);
     }
 }
+.hero-section h1{
+    color: #2b259a;
+}
 
-
+.hero-section h3, .hero-section p {
+    z-index: 3; /* Ensure they are above the background */
+    margin-bottom: 50px;
+    font-weight: bolder;
+    position: relative;
+}
