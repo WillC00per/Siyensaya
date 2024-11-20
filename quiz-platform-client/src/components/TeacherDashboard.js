@@ -125,10 +125,13 @@ return (
                 <div className="admin-dashboard-component__section mb-5 d-flex flex-column align-items-center">
                     <div className="dashboard-box">
                         {/* Teacher Dashboard Header */}
-                        <div className="admin-dashboard-header" style={{ backgroundColor: '#4CAF50', padding: '10px 20px', color: 'white', borderRadius: '5px' }}>
-                            <h1>Teacher Dashboard</h1>
-                        </div>
-                        
+                        <div 
+    className="admin-dashboard-header" 
+    style={{ backgroundColor: '#007BFF', padding: '10px 20px', color: 'white', borderRadius: '5px' }}
+>
+    <h1>Teacher Dashboard</h1>
+</div>
+
                         <h2 className="admin-dashboard-component__title">Students by Grade</h2>
                         {Array.from({ length: 6 }, (_, i) => i + 1).map((grade) => (
                             <div key={grade} className="admin-dashboard-component__grade-section mb-3">
