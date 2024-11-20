@@ -54,7 +54,7 @@ const GamePlayer = () => {
 
     return (
         <div className="Nav-bar-sg">
-            <NavigationBar />
+            
             <div className="student-games">
                 <div className="d-flex">
                     <StudentSidebar />
