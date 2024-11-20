@@ -138,7 +138,7 @@ const AdminDashboard = () => {
 
     return (
         <div className="container-fluid" style={{ paddingLeft: '500px', paddingTop: '110px' }}>
-            <AdminNavbar />
+            
             <div className="row">
                 <Sidebar />
                 <main className="admin-dashboard-component__main col-9 d-flex flex-column">
