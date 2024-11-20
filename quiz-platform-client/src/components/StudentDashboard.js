@@ -11,7 +11,10 @@ import './StudentDashboard.css';
 import { useNavigate } from 'react-router-dom';
 const StudentDashboard = () => {
     const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
-
+ const handleAvatarClick = () => {
+        navigate('/profile');
+    };
+    
     const [studentData, setStudentData] = useState(null);
     const [availableQuizzes, setAvailableQuizzes] = useState([]);
     const [latestQuizzes, setLatestQuizzes] = useState([]);
@@ -81,7 +84,7 @@ const StudentDashboard = () => {
                     const student = await fetchStudentData();
                     setStudentData(student);
                     setFullName(student.user.firstName + ' ' + student.user.lastName); // Assuming the user field contains first and last names
-
+                    setAvatarUrl(student.avatarUrl);
                     const [available, { grade }] = await Promise.all([
                         fetchAvailableQuizzes(),
                         fetchStudentData(),
@@ -140,7 +143,16 @@ const StudentDashboard = () => {
                 <div className="student-dashboard-main-content flex-grow-1">
                     <div className="welcome-box mb-4">
                         <h1>Welcome, {fullName || 'Guest'}!</h1>
+                        {avatarUrl && (
+                           <img 
+                           src={`${serverUrl}${avatarUrl}`} 
+                           alt="Student Avatar" 
+                           className="avatar" 
+                           onClick={handleAvatarClick} 
+                       />
+                        )}
                     </div>
+
 
                     {/* Quiz Progress Section */}
                     <div className="quiz-progress-section gamified-box single-box mb-4">
