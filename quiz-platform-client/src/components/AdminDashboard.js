@@ -161,11 +161,12 @@ const AdminDashboard = () => {
                                             style={{ width: '100px' }}
                                         >
                                             <img 
-                                                src={student.avatarUrl ? `${process.env.REACT_APP_API_BASE_URL}${student.avatarUrl}` : '/default-avatar.png'}
-                                                alt={student.fullName || 'Student Avatar'} 
-                                                className="admin-dashboard-component__student-avatar card-img-top rounded-circle mb-2" 
-                                                style={{ width: '50px', height: '50px' }}
-                                            />
+                                                    src={student.avatarUrl ? `${process.env.REACT_APP_API_BASE_URL}${student.avatarUrl}` : 'https://i.imgur.com/MmK2JOi.png'}
+                                                    alt={student.fullName || 'Student Avatar'} 
+                                                    className="admin-dashboard-component__student-avatar card-img-top rounded-circle mb-2" 
+                                                    style={{ width: '50px', height: '50px' }}
+                                                />
+
                                             <div className="card-body p-0">
                                                 <h6 className="admin-dashboard-component__student-name card-title">
                                                     {student.fullName || `${student.firstName} ${student.lastName}`}
@@ -324,6 +325,7 @@ const AdminDashboard = () => {
                                         </button>
                                     </div>
                                     <div className="modal-body">
+                        <p><strong>Student Name:</strong> {studentDetails.fullName}</p>
                                         <p><strong>Student Number:</strong> {studentDetails.studentNumber}</p>
                                         <p><strong>Grade:</strong> {studentDetails.grade}</p>
 
