@@ -120,7 +120,7 @@ const TeacherDashboard = () => {
 
     return (
         <div className="container-fluid" style={{ paddingLeft: '500px', paddingTop: '110px' }}>
-           <TeacherNavbar />
+          
             <div className="row">
             <TeacherSidebar />
                 <main className="admin-dashboard-component__main col-9 d-flex flex-column">
