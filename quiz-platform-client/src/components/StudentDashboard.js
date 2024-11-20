@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavigationBar from './StudentNavbar';
@@ -11,10 +12,11 @@ import './StudentDashboard.css';
 import { useNavigate } from 'react-router-dom';
 const StudentDashboard = () => {
     const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
+    const serverUrl = `${process.env.REACT_APP_API_BASE_URL}`;
  const handleAvatarClick = () => {
         navigate('/profile');
     };
-    
+    const [avatarUrl, setAvatarUrl] = useState('');
     const [studentData, setStudentData] = useState(null);
     const [availableQuizzes, setAvailableQuizzes] = useState([]);
     const [latestQuizzes, setLatestQuizzes] = useState([]);
@@ -57,6 +59,11 @@ const StudentDashboard = () => {
                 throw new Error('Could not fetch quizzes.');
             }
         };
+
+        const handleCloseModal = () => {
+        setUserToDelete(null);
+        setShowModal(false);
+    };
 
         const fetchLatestQuizzes = async (grade) => {
             try {
