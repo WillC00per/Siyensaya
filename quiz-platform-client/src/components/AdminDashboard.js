@@ -136,7 +136,7 @@ const AdminDashboard = () => {
         return <div className="alert alert-danger">{error}</div>;
     }
 
-    rreturn (
+    return (
     <div className="container-fluid" style={{ paddingLeft: '500px', paddingTop: '110px' }}>
         <div className="row">
             <Sidebar />
