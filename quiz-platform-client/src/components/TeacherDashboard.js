@@ -117,50 +117,53 @@ const TeacherDashboard = () => {
     if (error) {
         return <div className="alert alert-danger">{error}</div>;
     }
-
-    return (
-        <div className="container-fluid" style={{ paddingLeft: '500px', paddingTop: '110px' }}>
-          
-            <div className="row">
+return (
+    <div className="container-fluid" style={{ paddingLeft: '500px', paddingTop: '110px' }}>
+        <div className="row">
             <TeacherSidebar />
-                <main className="admin-dashboard-component__main col-9 d-flex flex-column">
-                    <div className="admin-dashboard-component__section mb-5 d-flex flex-column align-items-center">
-                        <div className="dashboard-box">
-                            <h2 className="admin-dashboard-component__title">Students by Grade</h2>
-                            {Array.from({ length: 6 }, (_, i) => i + 1).map((grade) => (
-                                <div key={grade} className="admin-dashboard-component__grade-section mb-3">
-                                    <h3 className="admin-dashboard-component__grade-title">Grade {grade}</h3>
-                                    <div className="admin-dashboard-component__students d-flex flex-wrap justify-content-center">
-    {(studentsByGrade[grade] || []).slice(0, 4).map((student, index) => (
-        <div 
-            key={student._id} 
-            className={`admin-dashboard-component__student-card card m-2 p-3 text-center`}
-            onClick={() => handleStudentClick(student._id)} 
-            style={{ width: '100px' }}
-        >
-                                                <img 
-      src={student.avatarUrl ? `${process.env.REACT_APP_API_BASE_URL}${student.avatarUrl}` : '/default-avatar.png'}
-
-    alt={student.fullName || 'Student Avatar'} 
-    className="admin-dashboard-component__student-avatar card-img-top rounded-circle mb-2" 
-    style={{ width: '50px', height: '50px' }}
-/>
-
-                                                <div className="card-body p-0">
-                                                    <h6 className="admin-dashboard-component__student-name card-title">
-                                                        {student.fullName || `${student.firstName} ${student.lastName}`}
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        ))}
-                                        {(!studentsByGrade[grade] || studentsByGrade[grade].length === 0) && (
-                                            <p className="admin-dashboard-component__no-students text-muted">No students found in this grade.</p>
-                                        )}
-                                    </div>
-                                    <button className="btn btn-primary mt-3" onClick={() => handleShowStudentsByGrade(grade)}>View All Students in Grade {grade}</button>
-                                </div>
-                            ))}
+            <main className="admin-dashboard-component__main col-9 d-flex flex-column">
+                <div className="admin-dashboard-component__section mb-5 d-flex flex-column align-items-center">
+                    <div className="dashboard-box">
+                        {/* Teacher Dashboard Header */}
+                        <div className="admin-dashboard-header" style={{ backgroundColor: '#4CAF50', padding: '10px 20px', color: 'white', borderRadius: '5px' }}>
+                            <h1>Teacher Dashboard</h1>
                         </div>
+                        
+                        <h2 className="admin-dashboard-component__title">Students by Grade</h2>
+                        {Array.from({ length: 6 }, (_, i) => i + 1).map((grade) => (
+                            <div key={grade} className="admin-dashboard-component__grade-section mb-3">
+                                <h3 className="admin-dashboard-component__grade-title">Grade {grade}</h3>
+                                <div className="admin-dashboard-component__students d-flex flex-wrap justify-content-center">
+                                    {(studentsByGrade[grade] || []).slice(0, 4).map((student, index) => (
+                                        <div 
+                                            key={student._id} 
+                                            className={`admin-dashboard-component__student-card card m-2 p-3 text-center`}
+                                            onClick={() => handleStudentClick(student._id)} 
+                                            style={{ width: '100px' }}
+                                        >
+                                            <img 
+                                                src={student.avatarUrl ? `${process.env.REACT_APP_API_BASE_URL}${student.avatarUrl}` : '/default-avatar.png'}
+                                                alt={student.fullName || 'Student Avatar'} 
+                                                className="admin-dashboard-component__student-avatar card-img-top rounded-circle mb-2" 
+                                                style={{ width: '50px', height: '50px' }}
+                                            />
+                                            <div className="card-body p-0">
+                                                <h6 className="admin-dashboard-component__student-name card-title">
+                                                    {student.fullName || `${student.firstName} ${student.lastName}`}
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    ))}
+                                    {(!studentsByGrade[grade] || studentsByGrade[grade].length === 0) && (
+                                        <p className="admin-dashboard-component__no-students text-muted">No students found in this grade.</p>
+                                    )}
+                                </div>
+                                <button className="btn btn-primary mt-3" onClick={() => handleShowStudentsByGrade(grade)}>View All Students in Grade {grade}</button>
+                            </div>
+                        ))}
+                    </div>
+               
+
 
                         <div className="dashboard-box">
                             <h2 className="admin-dashboard-component__title">Students by Grade Chart</h2>
