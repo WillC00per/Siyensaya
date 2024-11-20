@@ -16,6 +16,9 @@ const StudentDashboard = () => {
  const handleAvatarClick = () => {
         navigate('/profile');
     };
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
     const [avatarUrl, setAvatarUrl] = useState('');
     const [studentData, setStudentData] = useState(null);
     const [availableQuizzes, setAvailableQuizzes] = useState([]);
@@ -60,10 +63,7 @@ const StudentDashboard = () => {
             }
         };
 
-        const handleCloseModal = () => {
-        setUserToDelete(null);
-        setShowModal(false);
-    };
+      
 
         const fetchLatestQuizzes = async (grade) => {
             try {
