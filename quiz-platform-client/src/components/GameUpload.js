@@ -148,7 +148,7 @@ const handleUpload = async () => {
     <div className="d-flex flex-column vh-100">
       <Sidebar />
       <div className="flex-grow-1 d-flex flex-column">
-        <AdminNavbar />
+       
         <div className="container-fluid flex-grow-1 d-flex flex-column align-items-center justify-content-center">
           <h2 className="upload-header mb-4">Upload Unity Game</h2>
           
