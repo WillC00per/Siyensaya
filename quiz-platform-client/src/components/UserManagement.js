@@ -208,11 +208,17 @@ const handleEdit = (username) => {
                                                       <Button
     variant="primary"
     className="ml-2"
-    style={{ borderRadius: '15px' }}
+    style={{ 
+        borderRadius: '15px', 
+        backgroundColor: 'blue', 
+        borderColor: 'blue', 
+        marginTop: '3px' 
+    }}
     onClick={() => handleShowModal(user)}
 >
     Archive
 </Button>
+
 
 
                                                     </td>
