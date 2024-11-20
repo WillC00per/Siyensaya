@@ -150,7 +150,7 @@ const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
         <div className="register-page d-flex vh-100">
             <Sidebar />
             <div className="flex-grow-1">
-                <AdminNavbar />
+                
                 <div className="container mt-5">
                     <div className="card shadow">
                         <h1 className="card-header text-center">USER MANAGEMENT</h1>
