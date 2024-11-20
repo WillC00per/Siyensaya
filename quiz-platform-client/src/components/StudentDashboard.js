@@ -207,7 +207,7 @@ const StudentDashboard = () => {
                         </div>
 
                         {/* Modal for All Results */}
-                        <Modal show={showModal} onHide={handleModalClose} size="lg" className="modal-fullscreen">
+                        <Modal show={showModal} onHide={handleCloseModal} backdrop={false}>
                             <Modal.Header closeButton>
                                 <Modal.Title>All Quiz Results</Modal.Title>
                             </Modal.Header>
