@@ -32,9 +32,9 @@ const Home = () => {
 
             {/* Hero Section */}
             <div className="hero-section">
-                <h1>Where Discovery</h1>
-                <h1>Meets Fun!</h1>
-                <p>Unlock The Joy Of Learning</p>
+            <h1>Mother Theresa <br></br> Academy of Marilao</h1>
+                <h2>Where Discovery</h2>
+                <h2>Meets Fun!</h2>
                 <a href="#" className="btn-get-started" onClick={handleGetStartedClick}>Get Started</a>
                 <img src="https://i.imgur.com/sqFQbuU.gif" alt="Illustration" className="illustration" />
             </div>
