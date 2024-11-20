@@ -182,7 +182,7 @@ const addQuestionsToQuiz = async (e) => {
     return ( 
         <ProtectedTeacherRoute>
     <div className="admin-dashboard-component container-fluid">
-        <TeacherNavbar />
+        
          <div className="row">
          <TeacherSidebar />
         <div className="quiz-form-container">
