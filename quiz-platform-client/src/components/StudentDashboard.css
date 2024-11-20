@@ -339,3 +339,17 @@
         align-items: center;
     }
 }
+.welcome-box h1 {
+    margin-right: 15px; /* Add space between the text and the avatar */
+}
+
+.avatar {
+    width: 50px; /* Set the size of the avatar */
+    height: 50px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image covers the circle without distortion */
+}
+.avatar:hover {
+    transform: scale(1.5); /* Slightly enlarges the image */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Adds a shadow on hover */
+}
