@@ -61,11 +61,12 @@
 
 .submenu {
     margin-left: 15px; /* Indent submenu items */
+    color: #fff;
 }
 
-.submenu .nav-link {
+.admin-sidebar .submenu .nav-link {
     font-size: 0.9em; /* Smaller font for submenu */
-    color: #6c757d; /* Optional color for differentiation */
+    color: #ffffff; /* White text for submenu links */
 }
 
 .submenu .nav-link:hover {
