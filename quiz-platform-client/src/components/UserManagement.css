@@ -47,18 +47,60 @@ h1 {
     width: 100%;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
 .pagination .page-item {
     display: inline-block;
     margin-right: 5px;
+    height: 40px; /* Fixed height */
+    line-height: 40px; /* Vertical centering */
+    width: auto; /* Ensure width adjusts to content */
+    max-width: 100%; /* Prevent overflow */
 }
 
 .pagination .page-link {
+    display: inline-block;
+    height: 100%; /* Matches page-item height */
+    padding: 0 10px; /* Adjust padding to avoid overflow */
+    text-align: center;
+    width: fit-content;
+    line-height: 40px; /* Vertically centers text */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    color: #007bff;
     cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Prevent content overflow */
+    text-overflow: ellipsis; /* Add "..." if text exceeds box */
+    box-sizing: border-box; /* Ensure padding is included */
 }
 
 .pagination .page-link:hover {
+    background-color: #f0f0f0;
     text-decoration: none;
 }
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: #f9f9f9;
+    color: #ddd;
+    cursor: not-allowed;
+}
+
 
 /* Role-specific background colors */
 .role-cell {
@@ -77,6 +119,22 @@ h1 {
     background-color: #8a2be2; /* Purple background for student */
     color: white; /* White text color for student */
 }
+.custom-button {
+    background-color: #28a745; /* Override the green color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Adjust padding */
+    font-size: 16px; /* Adjust font size */
+    margin-top: 38px;
+    border-radius: 5px; /* Round corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    transition: transform 0.2s ease, background-color 0.3s ease; /* Add hover effect */
+}
+
+.custom-button:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: translateY(-2px); /* Lift effect */
+}
+
 
 .role-box.teacher {
     background-color: #007bff; /* Blue background for teacher */
