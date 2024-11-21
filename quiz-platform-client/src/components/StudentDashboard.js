@@ -152,11 +152,12 @@ const StudentDashboard = () => {
                         <h1>Welcome, {fullName || 'Guest'}!</h1>
                         {avatarUrl && (
                            <img 
-                           src={`${serverUrl}${avatarUrl}`} 
-                           alt="Student Avatar" 
-                           className="avatar" 
-                           onClick={handleAvatarClick} 
-                       />
+   src={avatarUrl ? `${serverUrl}${avatarUrl}` : "https://i.imgur.com/MmK2JOi.png"} 
+   alt="Student Avatar" 
+   className="avatar" 
+   onClick={handleAvatarClick} 
+/>
+
                         )}
                     </div>
 
